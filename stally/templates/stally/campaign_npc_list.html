@@ -1,0 +1,19 @@
+{% extends 'stally/base.html' %}
+
+{% block content %}
+  <div class="page-title">
+    <h1>NPCs in {{ campaign.name }}</h1>
+  </div>
+
+  {% for character in campaign.npcs.all  %}
+    <div class="character">
+      <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+      <h3>{{ character.name }}</h3>
+      <p>Description: {{ character.description }}</p>
+      {% if character.pokemons.all %}
+        <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link">Pokémon</a>
+      {% endif %}
+      <!--<div class="horizontal-line"><hr></div>-->
+    </div>
+  {% endfor %}
+{% endblock %}

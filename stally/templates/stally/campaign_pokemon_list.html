@@ -1,0 +1,20 @@
+{% extends 'stally/base.html' %}
+
+{% block content %}
+  <div class="page-title">
+    <h1>Pokemon in {{ campaign.name }}</h1>
+  </div>
+
+  {% for pokemon in pokemons  %}
+    <div class="pokemon">
+      <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+      <h3>{{ pokemon.name }}</h3>
+      <p>{{ pokemon.kind }}</p>
+      <p>Type: {{ pokemon.type_p }}</p>
+      <p>Trainer: {{ pokemon.trainer }}
+      <!--<p>Player: {{ pokemon.player.name }}</p>-->
+      <p>Description: {{ pokemon.description }}</p>
+      <!--<div class="horizontal-line"><hr></div>-->
+    </div>
+  {% endfor %}
+{% endblock %}

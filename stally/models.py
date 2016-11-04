@@ -12,6 +12,9 @@ class Player(models.Model):
     def __lt__(self, other):
         return self.name < other.name
 
+    class Meta:
+        ordering = ['name']
+
 class Campaign(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to = 'images/campaigns/', default = 'images/no-img.jpg')
@@ -40,6 +43,9 @@ class Campaign(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+
 class Session(models.Model):
     name = models.CharField(max_length=200)
     number = models.IntegerField(primary_key=True)
@@ -49,6 +55,9 @@ class Session(models.Model):
 
     def __str__(self):
         return "{}. {}".format(self.number, self.name)
+
+    class Meta:
+        ordering = ['name']
 
 class Character(models.Model):
     name = models.CharField(max_length=100)
@@ -67,6 +76,9 @@ class Character(models.Model):
         else:
             return '{} (played by {})'.format(self.name, self.player.name)
 
+    class Meta:
+        ordering = ['name']
+
 class Pokemon(Character):
     trainer = models.ForeignKey(Character, on_delete=models.CASCADE, related_name='pokemons')
     type_p = models.CharField(max_length=200)
@@ -77,3 +89,8 @@ class Pokemon(Character):
             player=character.player, campaign=character.campaign,
             trainer=character, type_p=type_p, kind=kind)
         new_pokemon.save()
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Pokémon'
+        verbose_name_plural = 'Pokémon'

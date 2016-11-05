@@ -1,0 +1,6 @@
+<p><b>DM:</b> {{ campaign.dm }}</p>
+<p><b>Players:</b>
+  {% for player in campaign.players %}
+    {{ player }}
+  {% endfor %}
+<p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>

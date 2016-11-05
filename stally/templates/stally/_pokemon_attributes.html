@@ -1,0 +1,16 @@
+<div class="kind">
+  <p>{{ pokemon.kind }}</p>
+</div>
+<p><b>Type:</b> {{ pokemon.type_p }}</p>
+{% if pokemon.pronouns %}
+  <p><b>Pronouns</b> {{ pokemon.pronouns }}</p>
+{% endif %}
+{% if pokemon.trainer %}
+  <p><b>Trainer:</b> {{ pokemon.trainer }}</p>
+{% endif %}
+{% if pokemon.nature %}
+  <p><b>Nature:</b> {{ pokemon.nature }}</p>
+{% endif %}
+{% if pokemon.description %}
+  <p><b>Description:</b> {{ pokemon.description }}</p>
+{% endif %}

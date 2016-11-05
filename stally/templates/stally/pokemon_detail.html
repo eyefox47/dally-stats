@@ -8,16 +8,6 @@
   <div class="pokemon">
     <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
     <h1>{{ pokemon.name }}</h1>
-    <div class="kind">
-      <p>{{ pokemon.kind }}</p>
-    </div>
-    <!--<p>Player: {{ pokemon.player.name }}</p>-->
-    <p><b>Type:</b> {{ pokemon.type_p }}</p>
-    {% if pokemon.pronouns %}
-      <p><b>Pronouns:</b> {{ pokemon.pronouns }}</p>
-    {% endif %}
-    {% if pokemon.description %}
-      <p><b>Description:</b> {{ pokemon.description }}</p>
-    {% endif %}
+    {% include 'stally/_pokemon_attributes.html' %}
   </div>
 {% endblock %}

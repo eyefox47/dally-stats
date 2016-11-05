@@ -11,12 +11,7 @@
       <p><b>Started on:</b> {{ campaign.start_date }}</p>
     </div>
     <img class="campaign-img" src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
-    <p> <b>DM:</b> {{ campaign.dm }}</p>
-    <p> <b>Players:</b>
-      {% for player in campaign.players %}
-        {{ player }}
-      {% endfor %}
-    <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
+    {% include 'stally/_campaign_attributes.html' %}
     <a href="{% url 'campaign_character_list' pk=campaign.pk %}" class="characters-link link">Characters</a>
     {% if campaign.pokemons.all %}
       <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}" class="pokemon-link link">Pokémon</a>

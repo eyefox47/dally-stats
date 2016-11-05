@@ -9,7 +9,12 @@
     <div class="character">
       <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
       <h3>{{ character.name }}</h3>
-      <p>Description: {{ character.description }}</p>
+      {% if pokemon.pronouns %}
+        <p>Pronouns: {{ pokemon.pronouns }}
+      {% endif %}
+      {% if character.description %}
+        <p>Description: {{ character.description }}</p>
+      {% endif %}
       {% if character.pokemons.all %}
         <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link">Pokémon</a>
       {% endif %}

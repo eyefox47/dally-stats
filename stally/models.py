@@ -64,6 +64,7 @@ class Character(models.Model):
     image = models.ImageField(upload_to = 'images/characters/', default = 'images/no-img.jpg')
     player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='characters')
     pronouns = models.CharField(max_length=100, blank=True, null=True)
+    cclass = models.CharField(max_length=200, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='characters')
     in_campaign_since = models.ForeignKey(Session, on_delete=models.CASCADE, blank=True, null=True)

@@ -11,9 +11,18 @@
       <h3>{{ pokemon.name }}</h3>
       <p>{{ pokemon.kind }}</p>
       <p>Type: {{ pokemon.type_p }}</p>
-      <p>Trainer: {{ pokemon.trainer }}
-      <!--<p>Player: {{ pokemon.player.name }}</p>-->
-      <p>Description: {{ pokemon.description }}</p>
+      {% if pokemon.pronouns %}
+        <p>Pronouns: {{ pokemon.pronouns }}
+      {% endif %}
+      {% if pokemon.trainer %}
+        <p>Trainer: {{ pokemon.trainer }}
+      {% endif %}
+      {% if pokemon.nature %}
+        <p>Nature: {{ pokemon.nature }}
+      {% endif %}
+      {% if pokemon.description %}
+        <p>Description: {{ pokemon.description }}</p>
+      {% endif %}
       <!--<div class="horizontal-line"><hr></div>-->
     </div>
   {% endfor %}

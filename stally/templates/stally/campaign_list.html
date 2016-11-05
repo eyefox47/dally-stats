@@ -9,15 +9,15 @@
     <div class="campaign">
       <h2><a href="{% url 'campaign_character_list' pk=campaign.pk %}">{{ campaign.name }}</a></h1>
       <div class="date">
-        <p>Started on: {{ campaign.start_date }}</p>
+        <p><b>Started on:</b> {{ campaign.start_date }}</p>
       </div>
       <img class="campaign-img" src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
-      <p> DM: {{ campaign.dm }}</p>
-      <p> Players:
+      <p> <b>DM:</b> {{ campaign.dm }}</p>
+      <p> <b>Players:</b>
         {% for player in campaign.players %}
           {{ player }}
         {% endfor %}
-      <p>Description: {{ campaign.description|linebreaksbr }}</p>
+      <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
       <a href="{% url 'campaign_character_list' pk=campaign.pk %}" class="characters-link link">Characters</a>
       {% if campaign.pokemons.all %}
         <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}" class="pokemon-link link">Pokémon</a>

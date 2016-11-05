@@ -10,18 +10,18 @@
       <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
       <h3>{{ pokemon.name }}</h3>
       <p>{{ pokemon.kind }}</p>
-      <p>Type: {{ pokemon.type_p }}</p>
+      <p><b>Type:</b> {{ pokemon.type_p }}</p>
       {% if pokemon.pronouns %}
-        <p>Pronouns: {{ pokemon.pronouns }}
+        <p><b>Pronouns</b> {{ pokemon.pronouns }}</p>
       {% endif %}
       {% if pokemon.trainer %}
-        <p>Trainer: {{ pokemon.trainer }}
+        <p><b>Trainer:</b> {{ pokemon.trainer }}</p>
       {% endif %}
       {% if pokemon.nature %}
-        <p>Nature: {{ pokemon.nature }}
+        <p><b>Nature:</b> {{ pokemon.nature }}</p>
       {% endif %}
       {% if pokemon.description %}
-        <p>Description: {{ pokemon.description }}</p>
+        <p><b>Description</b> {{ pokemon.description }}</p>
       {% endif %}
       <!--<div class="horizontal-line"><hr></div>-->
     </div>

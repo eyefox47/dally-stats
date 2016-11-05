@@ -81,7 +81,7 @@ class Character(models.Model):
         ordering = ['name']
 
 class Pokemon(Character):
-    trainer = models.ForeignKey(Character, on_delete=models.CASCADE, related_name='pokemons')
+    trainer = models.ForeignKey(Character, on_delete=models.CASCADE, related_name='pokemons', blank=True, null=True)
     type_p = models.CharField(max_length=200)
     nature = models.CharField(max_length=200, blank=True, null=True)
     kind = models.CharField(max_length=200)

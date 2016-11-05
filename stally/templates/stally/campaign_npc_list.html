@@ -9,8 +9,8 @@
     <div class="character">
       <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
       <h3>{{ character.name }}</h3>
-      {% if pokemon.pronouns %}
-        <p>Pronouns: {{ pokemon.pronouns }}
+      {% if character.pronouns %}
+        <p>Pronouns: {{ character.pronouns }}
       {% endif %}
       {% if character.description %}
         <p>Description: {{ character.description }}</p>

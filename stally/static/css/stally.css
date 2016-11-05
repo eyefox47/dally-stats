@@ -20,8 +20,13 @@ h1, h2 {
 }
 
 .date {
-    color: #828282;
-    font-size: 10pt;
+  color: #828282;
+  font-size: 10pt;
+}
+
+.kind {
+  color: #828282;
+
 }
 
 .save {

@@ -9,7 +9,9 @@
     <div class="pokemon">
       <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
       <h3>{{ pokemon.name }}</h3>
-      <p>{{ pokemon.kind }}</p>
+      <div class="kind">
+        <p>{{ pokemon.kind }}</p>
+      </div>
       <p><b>Type:</b> {{ pokemon.type_p }}</p>
       {% if pokemon.pronouns %}
         <p><b>Pronouns</b> {{ pokemon.pronouns }}</p>

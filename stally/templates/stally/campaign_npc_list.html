@@ -10,7 +10,9 @@
       <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
       <h3>{{ character.name }}</h3>
       {% if character.cclass %}
-        <p>{{ character.cclass }}</p>
+        <div class="kind">
+          <p>{{ character.cclass }}</p>
+        </div>
       {% endif %}
       {% if character.pronouns %}
         <p><b>Pronouns:</b> {{ character.pronouns }}</p>

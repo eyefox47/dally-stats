@@ -1,0 +1,23 @@
+{% extends 'stally/base.html' %}
+
+{% block content %}
+  <div class="character">
+    <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+    <h1>{{ character.name }}</h1>
+    {% if character.cclass %}
+      <div class="kind">
+        <p>{{ character.cclass }}</p>
+      </div>
+    {% endif %}
+    <p><b>Player:</b> {{ character.player.name }}</p>
+    {% if character.pronouns %}
+      <p><b>Pronouns:</b> {{ character.pronouns }}</p>
+    {% endif %}
+    {% if character.description %}
+      <p><b>Description:</b> {{ character.description }}</p>
+    {% endif %}
+    {% if character.pokemons.all %}
+      <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
+    {% endif %}
+  </div>
+{% endblock %}

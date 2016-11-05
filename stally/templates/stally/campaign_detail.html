@@ -1,0 +1,24 @@
+{% extends 'stally/base.html' %}
+
+{% block content %}
+  <div class="campaign">
+    <h1>{{ campaign.name }}</h1>
+    <div class="date">
+      <p><b>Started on:</b> {{ campaign.start_date }}</p>
+    </div>
+    <img class="campaign-img" src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
+    <p> <b>DM:</b> {{ campaign.dm }}</p>
+    <p> <b>Players:</b>
+      {% for player in campaign.players %}
+        {{ player }}
+      {% endfor %}
+    <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
+    <a href="{% url 'campaign_character_list' pk=campaign.pk %}" class="characters-link link">Characters</a>
+    {% if campaign.pokemons.all %}
+      <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}" class="pokemon-link link">Pokémon</a>
+    {% endif %}
+    {% if campaign.npcs.all or campaign.npc_pokemon.all %}
+      <i>, </i><a href="{% url 'campaign_npc_list' pk=campaign.pk %}" class="npc-link link">NPCs</a>
+    {% endif %}
+  </div>
+{% endblock %}

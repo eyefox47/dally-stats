@@ -1,0 +1,9 @@
+{% extends 'stally/base.html' %}
+
+{% block content %}
+  <div class="player">
+    <img class="player-img" src="{{ player.image.url }}" alt="{{ player.name }} image">
+    <h1>{{ player.name }}</h1>
+
+  </div>
+{% endblock %}

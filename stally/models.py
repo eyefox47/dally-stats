@@ -83,6 +83,7 @@ class Character(models.Model):
 class Pokemon(Character):
     trainer = models.ForeignKey(Character, on_delete=models.CASCADE, related_name='pokemons')
     type_p = models.CharField(max_length=200)
+    nature = models.CharField(max_length=200, blank=True, null=True)
     kind = models.CharField(max_length=200)
 
     def create_pokemon(character, name, type_p, kind):

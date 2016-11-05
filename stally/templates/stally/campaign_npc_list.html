@@ -1,5 +1,9 @@
 {% extends 'stally/base.html' %}
 
+{% block pagetitle %}
+  NPCs in {{ campaign.name }} - Dallys RGPs
+{% endblock %}
+
 {% block content %}
   {% if campaign.npcs.all %}
     <div class="page-title">
@@ -52,7 +56,7 @@
           <p><b>Nature:</b> {{ pokemon.nature }}</p>
         {% endif %}
         {% if pokemon.description %}
-          <p><b>Description</b> {{ pokemon.description }}</p>
+          <p><b>Description:</b> {{ pokemon.description }}</p>
         {% endif %}
         <!--<div class="horizontal-line"><hr></div>-->
       </div>

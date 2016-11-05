@@ -1,5 +1,9 @@
 {% extends 'stally/base.html' %}
 
+{% block pagetitle %}
+  {{ pokemon.name }} - Dallys RGPs
+{% endblock %}
+
 {% block content %}
   <div class="pokemon">
     <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">

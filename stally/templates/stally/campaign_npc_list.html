@@ -22,7 +22,7 @@
           <p><b>Description:</b> {{ character.description }}</p>
         {% endif %}
         {% if character.pokemons.all %}
-          <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link">Pokémon</a>
+          <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
         {% endif %}
         <!--<div class="horizontal-line"><hr></div>-->
       </div>

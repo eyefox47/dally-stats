@@ -22,7 +22,7 @@
       {% if campaign.pokemons.all %}
         <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}" class="pokemon-link link">Pokémon</a>
       {% endif %}
-      {% if campaign.npcs.all %}
+      {% if campaign.npcs.all or campaign.npc_pokemon.all %}
         <i>, </i><a href="{% url 'campaign_npc_list' pk=campaign.pk %}" class="npc-link link">NPCs</a>
       {% endif %}
     </div>

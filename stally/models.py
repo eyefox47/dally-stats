@@ -34,11 +34,16 @@ class Campaign(models.Model):
         return characters.exclude(pk__in=pokemon)
 
     def pokemons(self):
-        return Pokemon.objects.filter(campaign=self)
+        return Pokemon.objects.filter(campaign=self).exclude(player=self.dm)
 
     def npcs(self):
         characters = Character.objects.filter(campaign=self)
-        return characters.filter(player=self.dm)
+        pokemon = Pokemon.objects.filter(campaign=self)
+        return characters.filter(player=self.dm).exclude(pk__in=pokemon)
+
+    def npc_pokemon(self):
+        pokemon = Pokemon.objects.filter(campaign=self)
+        return pokemon.filter(player=self.dm)
 
     def __str__(self):
         return self.name

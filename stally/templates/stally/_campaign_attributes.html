@@ -1,6 +1,6 @@
-<p><b>DM:</b> {{ campaign.dm }}</p>
+<p><b>DM:</b> <a href="{% url 'player_detail' pk=campaign.dm.pk %}">{{ campaign.dm }}</a></p>
 <p><b>Players:</b>
   {% for player in campaign.players %}
-    {{ player }}
+    <a href="{% url 'player_detail' pk=player.pk %}">{{ player }}</a>
   {% endfor %}
 <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>

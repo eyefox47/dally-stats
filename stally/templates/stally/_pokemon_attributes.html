@@ -6,7 +6,7 @@
   <p><b>Pronouns</b> {{ pokemon.pronouns }}</p>
 {% endif %}
 {% if pokemon.trainer %}
-  <p><b>Trainer:</b> {{ pokemon.trainer }}</p>
+  <p><b>Trainer:</b> <a href="{% url 'character_detail' pk=pokemon.trainer.pk %}">{{ pokemon.trainer }}</a></p>
 {% endif %}
 {% if pokemon.nature %}
   <p><b>Nature:</b> {{ pokemon.nature }}</p>

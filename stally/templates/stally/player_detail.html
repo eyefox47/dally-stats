@@ -12,7 +12,7 @@
   {% if player.campaigns_dming.all %}
   <p><b>DMs:</b>
     {% for campaign in player.campaigns_dming.all %}
-      {{ campaign.name }}
+      <a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a>
     {% endfor %}
   </p>
   {% endif %}
@@ -31,7 +31,7 @@
           <p>{{ character.cclass }}</p>
         </div>
       {% endif %}
-      <p><b>Campaign:</b> {{ character.campaign }}</p>
+      <p><b>Campaign: </b><a href="{% url 'campaign_detail' pk=character.campaign.pk %}">{{ character.campaign }}</a></p>
       {% if character.pronouns %}
         <p><b>Pronouns:</b> {{ character.pronouns }}</p>
       {% endif %}

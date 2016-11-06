@@ -53,9 +53,13 @@ h1, h2 {
    margin-left: 20px;
  }
 
+ .pokemon-title-small {
+   margin-left: 20px;
+ }
+
  .trainee {
    margin-bottom: 50px;
-   margin-left: 20px;
+   margin-left: 40px;
  }
 
 .campaign h2 a, .campaign h2 a:visited {

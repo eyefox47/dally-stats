@@ -13,4 +13,19 @@
       <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
     {% endif %}
   </div>
+
+  {% if character.pokemons.all %}
+    <div class="pokemon-title-small">
+      <h2>{{ character.name }}s Pokémon</h2>
+    </div>
+
+    {% for pokemon in character.pokemons.all  %}
+      <div class="trainee">
+        <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        <h3>{{ pokemon.name }}</h3>
+        {% include 'stally/_pokemon_attributes.html' %}
+        <!--<div class="horizontal-line"><hr></div>-->
+      </div>
+    {% endfor %}
+  {% endif %}
 {% endblock %}

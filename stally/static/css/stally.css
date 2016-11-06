@@ -48,16 +48,16 @@ h1, h2 {
     margin-bottom: 70px;
 }
 
- .character, .pokemon {
+ .character, .pokemon, .campaign-small {
    margin-bottom: 70px;
    margin-left: 20px;
  }
 
- .pokemon-title-small {
+ .title-small {
    margin-left: 20px;
  }
 
- .trainee {
+ .trainee, .character-small {
    margin-bottom: 50px;
    margin-left: 40px;
  }
@@ -75,6 +75,7 @@ h1, h2 {
 .character-img, .pokemon-img, .player-img {
   float:right;
   width: 25%;
+  height: auto;
 
 }
 

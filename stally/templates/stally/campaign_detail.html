@@ -4,8 +4,10 @@
   {{ campaign.name }} - Dallys RGPs
 {% endblock %}
 
+
+{# Campagin description #}
 {% block content %}
-  <div class="campaign">
+  <div class="campaign-small">
     <h1>{{ campaign.name }}</h1>
     <div class="date">
       <p><b>Started on:</b> {{ campaign.start_date }}</p>
@@ -20,4 +22,73 @@
       <i>, </i><a href="{% url 'campaign_npc_list' pk=campaign.pk %}" class="npc-link link">NPCs</a>
     {% endif %}
   </div>
+
+  {# Character list #}
+  <div class="title-small">
+    <h1>Characters in {{ campaign.name }}</h1>
+  </div>
+
+  {% for character in campaign.characters.all  %}
+    <div class="character-small">
+      <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+      <h3>{{ character.name }}</h3>
+      {% include 'stally/_character_attributes.html' %}
+      {% if character.pokemons.all %}
+        <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
+      {% endif %}
+      <!--<div class="horizontal-line"><hr></div>-->
+    </div>
+  {% endfor %}
+
+  {# Pokemon list (if present) #}
+  {% if campaign.pokemons.all %}
+    <div class="page-title">
+      <h1>Pokémon in {{ campaign.name }}</h1>
+    </div>
+
+    {% for pokemon in campaign.npc_pokemon.all  %}
+      <div class="pokemon">
+        <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        <h3>{{ pokemon.name }}</h3>
+        {% include 'stally/_pokemon_attributes.html' %}
+        <!--<div class="horizontal-line"><hr></div>-->
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {# NPC list (if present) #}
+  {% if campaign.npcs.all %}
+    <div class="page-title">
+      <h1>NPCs in {{ campaign.name }}</h1>
+    </div>
+
+    {% for character in campaign.npcs.all  %}
+      <div class="character">
+        <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+        <h3>{{ character.name }}</h3>
+        {% include 'stally/_character_attributes.html' %}
+        {% if character.pokemons.all %}
+          <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
+        {% endif %}
+        <!--<div class="horizontal-line"><hr></div>-->
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {# NPC Pokemon (if present) #}
+  {% if campaign.npc_pokemon.all %}
+    <div class="page-title">
+      <h1>NPC Pokémon in {{ campaign.name }}</h1>
+    </div>
+
+    {% for pokemon in campaign.npc_pokemon.all  %}
+      <div class="pokemon">
+        <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        <h3>{{ pokemon.name }}</h3>
+        {% include 'stally/_pokemon_attributes.html' %}
+        <!--<div class="horizontal-line"><hr></div>-->
+      </div>
+    {% endfor %}
+  {% endif %}
+
 {% endblock %}

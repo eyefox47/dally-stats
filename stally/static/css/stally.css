@@ -74,7 +74,7 @@ h1, h2 {
 
 .character-img, .pokemon-img, .player-img {
   float:right;
-  width: 25%;
+  width: 160px;
   height: auto;
 
 }

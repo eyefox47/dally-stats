@@ -6,6 +6,13 @@ class Player(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to = 'images/players/', default = 'images/no-img.jpg')
 
+    def main_characters(self):
+        characters = Character.objects.filter(player=self)
+        pokemons =  Pokemon.objects.filter(player=self)
+        campaigns = Campaign.objects.filter(dm=self)
+        npcs = Character.objects.filter(campaign__in=campaigns)
+        return characters.exclude(pk__in=pokemons).exclude(pk__in=npcs)
+
     def __str__(self):
         return self.name
 

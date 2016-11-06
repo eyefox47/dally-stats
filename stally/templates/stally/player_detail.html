@@ -8,6 +8,40 @@
   <div class="player">
     <img class="player-img" src="{{ player.image.url }}" alt="{{ player.name }} image">
     <h1>{{ player.name }}</h1>
-
   </div>
+  {% if player.campaigns_dming.all %}
+  <p><b>DMs:</b>
+    {% for campaign in player.campaigns_dming.all %}
+      {{ campaign.name }}
+    {% endfor %}
+  </p>
+  {% endif %}
+
+  {# Character list #}
+  <div class="title">
+    <h2>Characters</h2>
+  </div>
+
+  {% for character in player.main_characters.all  %}
+    <div class="character-small">
+      <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+      <h3>{{ character.name }}</h3>
+      {% if character.cclass %}
+        <div class="kind">
+          <p>{{ character.cclass }}</p>
+        </div>
+      {% endif %}
+      <p><b>Campaign:</b> {{ character.campaign }}</p>
+      {% if character.pronouns %}
+        <p><b>Pronouns:</b> {{ character.pronouns }}</p>
+      {% endif %}
+      {% if character.description %}
+        <p><b>Description:</b> {{ character.description }}</p>
+      {% endif %}
+      {% if character.pokemons.all %}
+        <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
+      {% endif %}
+      <!--<div class="horizontal-line"><hr></div>-->
+    </div>
+  {% endfor %}
 {% endblock %}

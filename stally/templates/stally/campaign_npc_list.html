@@ -14,7 +14,18 @@
       <div class="character">
         <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
         <h3>{{ character.name }}</h3>
-        {% include 'stally/_character_attributes.html' %}
+        {% if character.cclass %}
+          <div class="kind">
+            <p>{{ character.cclass }}</p>
+          </div>
+        {% endif %}
+        {% if character.pronouns %}
+          <p><b>Pronouns:</b> {{ character.pronouns }}</p>
+        {% endif %}
+        {% if character.description %}
+          <p><b>Description:</b> {{ character.description }}</p>
+        {% endif %}
+
         {% if character.pokemons.all %}
           <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
         {% endif %}

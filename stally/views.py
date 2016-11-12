@@ -39,3 +39,6 @@ def pokemon_detail(request, pk):
 def player_detail(request, pk):
     player = get_object_or_404(Player, pk=pk)
     return render(request, 'stally/player_detail.html', {'player': player})
+
+def about(request):
+    return render(request, 'stally/about.html', {})

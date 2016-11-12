@@ -1,4 +1,8 @@
 {% load staticfiles %}
+{% load tags %}
+
+{% url 'about' as about %}
+{% url 'campaign_list' as home %}
 
 <html>
   <head>
@@ -11,6 +15,13 @@
   <body>
     <div class="page-header">
       <h1><a href="/">Dallys RPGs</a></h1>
+      <div id="navigation">
+        <h4>
+          <a class="{% active request home %}" href="{{ home }}">Campaigns</a>
+          <a href="http://www.informatik.uni-oldenburg.de/~lucasn/stream/">Audio Stream</a>
+          <a class="{% active request about %}" href="{{ about }}">About</a>
+        </h4>
+      </div>
     </div>
 
     <div class="content container">

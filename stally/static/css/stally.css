@@ -83,3 +83,7 @@ h1, h2 {
   bottom: 0;
   left: 0;
 }
+
+.active {
+  font-weight: bold;
+}

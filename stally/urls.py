@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^campaign/(?P<pk>\d+)/npcs/$', views.campaign_npc_list, name='campaign_npc_list'),
     url(r'^pokemon/(?P<pk>\d+)/$', views.pokemon_detail, name='pokemon_detail'),
     url(r'^players/(?P<pk>\d+)/$', views.player_detail, name='player_detail'),
+    url(r'^about/$', views.about, name='about'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

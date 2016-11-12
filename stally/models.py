@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.utils import timezone
+from django.core.validators import validate_comma_separated_integer_list
 
 
 class Player(models.Model):
@@ -96,7 +97,7 @@ class Character(models.Model):
         ordering = ['name']
 
 class Pokemon(Character):
-    pokedex_nr = models.IntegerField(blank=True, null=True)
+    pokedex_nr = models.CharField(max_length=7, blank=True, null=True, validators=[validate_comma_separated_integer_list])
     trainer = models.ForeignKey(Character, on_delete=models.CASCADE, related_name='pokemons', blank=True, null=True)
     type_p = models.CharField(max_length=200)
     nature = models.CharField(max_length=200, blank=True, null=True)

@@ -62,7 +62,7 @@ class Campaign(models.Model):
 
 class Session(models.Model):
     name = models.CharField(max_length=200)
-    number = models.IntegerField(primary_key=True)
+    number = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='sessions')
     date = models.DateField(default=timezone.now)
@@ -96,6 +96,7 @@ class Character(models.Model):
         ordering = ['name']
 
 class Pokemon(Character):
+    pokedex_nr = models.IntegerField(blank=True, null=True)
     trainer = models.ForeignKey(Character, on_delete=models.CASCADE, related_name='pokemons', blank=True, null=True)
     type_p = models.CharField(max_length=200)
     nature = models.CharField(max_length=200, blank=True, null=True)

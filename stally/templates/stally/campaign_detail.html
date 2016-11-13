@@ -30,7 +30,9 @@
 
   {% for character in campaign.characters.all  %}
     <div class="character-small">
-      <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+      {% if not character.image.url == "/media/images/no-img.jpg" %}
+        <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+        {% endif %}
       <h3>{{ character.name }}</h3>
       {% include 'stally/_character_attributes.html' %}
       {% if character.pokemons.all %}
@@ -48,7 +50,9 @@
 
     {% for pokemon in campaign.npc_pokemon.all  %}
       <div class="pokemon">
-        <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
+          <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        {% endif %}
         <h3>{{ pokemon.name }}</h3>
         {% include 'stally/_pokemon_attributes.html' %}
         <!--<div class="horizontal-line"><hr></div>-->
@@ -64,7 +68,9 @@
 
     {% for character in campaign.npcs.all  %}
       <div class="character">
-        <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+        {% if not character.image.url == "/media/images/no-img.jpg" %}
+          <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+        {% endif %}
         <h3>{{ character.name }}</h3>
         {% include 'stally/_character_attributes.html' %}
         {% if character.pokemons.all %}
@@ -83,7 +89,9 @@
 
     {% for pokemon in campaign.npc_pokemon.all  %}
       <div class="pokemon">
-        <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
+          <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        {% endif %}
         <h3>{{ pokemon.name }}</h3>
         {% include 'stally/_pokemon_attributes.html' %}
         <!--<div class="horizontal-line"><hr></div>-->

@@ -6,7 +6,9 @@
 
 {% block content %}
   <div class="player">
-    <img class="player-img" src="{{ player.image.url }}" alt="{{ player.name }} image">
+    {% if not player.image.url == "/media/images/no-img.jpg" %}
+      <img class="player-img" src="{{ player.image.url }}" alt="{{ player.name }} image">
+    {% endif %}
     <h1>{{ player.name }}</h1>
   </div>
   {% if player.campaigns_dming.all %}

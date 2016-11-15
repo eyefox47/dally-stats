@@ -11,7 +11,7 @@
 
   {% for campaign in campaigns %}
     <div class="campaign">
-      <h2><a href="{% url 'campaign_character_list' pk=campaign.pk %}">{{ campaign.name }}</a></h2>
+      <h2><a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a></h2>
       <div class="date">
         <p><b>Started on:</b> {{ campaign.start_date }}</p>
       </div>
@@ -19,7 +19,7 @@
       {% include 'stally/_campaign_attributes.html' %}
       <a href="{% url 'campaign_character_list' pk=campaign.pk %}" class="characters-link link">Characters</a>
       {% if campaign.pokemons.all %}
-        <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}" class="pokemon-link link">Pokémon</a>
+        <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}" class="pokemon-link link">Player Pokémon</a>
       {% endif %}
       {% if campaign.npcs.all or campaign.npc_pokemon.all %}
         <i>, </i><a href="{% url 'campaign_npc_list' pk=campaign.pk %}" class="npc-link link">NPCs</a>

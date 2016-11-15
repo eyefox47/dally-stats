@@ -27,7 +27,7 @@
   {% for character in player.main_characters.all  %}
     <div class="character-small">
       <!--<img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">-->
-      <h3>{{ character.name }}</h3>
+      <h3><a href="{% url 'character_detail' pk=character.pk %}">{{ character.name }}</a></h3>
       {% if character.cclass %}
         <div class="kind">
           <p>{{ character.cclass }}</p>

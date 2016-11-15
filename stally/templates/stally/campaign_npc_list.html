@@ -7,7 +7,7 @@
 {% block content %}
   {% if campaign.npcs.all %}
     <div class="page-title">
-      <h1>NPCs in {{ campaign.name }}</h1>
+      <h1>NPCs in <a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a></h1>
     </div>
 
     {% for character in campaign.npcs.all  %}
@@ -15,7 +15,7 @@
         {% if not character.image.url == "/media/images/no-img.jpg" %}
           <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
         {% endif %}
-        <h3>{{ character.name }}</h3>
+        <h3><a href="{% url 'character_detail' pk=character.pk %}">{{ character.name }}</a></h3>
         {% if character.cclass %}
           <div class="kind">
             <p>{{ character.cclass }}</p>
@@ -38,7 +38,7 @@
 
   {% if campaign.npc_pokemon.all %}
     <div class="page-title">
-      <h1>NPC Pokémon in {{ campaign.name }}</h1>
+      <h1>NPC Pokémon in <a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a></h1>
     </div>
 
     {% for pokemon in campaign.npc_pokemon.all  %}
@@ -46,7 +46,7 @@
         {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
           <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
         {% endif %}
-        <h3>{{ pokemon.name }}</h3>
+        <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">{{ pokemon.name }}</a></h3>
         {% include 'stally/_pokemon_attributes.html' %}
         <!--<div class="horizontal-line"><hr></div>-->
       </div>

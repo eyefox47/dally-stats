@@ -17,7 +17,7 @@ def character_pokemon_list(request, pk):
 
 def campaign_pokemon_list(request, pk):
     campaign = get_object_or_404(Campaign, pk=pk)
-    pokemons = campaign.pokemons()
+    pokemons = campaign.pc_pokemon()
     return render(request, 'stally/campaign_pokemon_list.html', {'campaign': campaign, 'pokemons': pokemons})
 
 def campaign_npc_list(request, pk):

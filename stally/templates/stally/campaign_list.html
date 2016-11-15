@@ -18,7 +18,7 @@
       <img class="portrait portrait-large" src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
       {% include 'stally/_campaign_attributes.html' %}
       <a href="{% url 'campaign_character_list' pk=campaign.pk %}" class="characters-link link">Characters</a>
-      {% if campaign.pokemons.all %}
+      {% if campaign.pc_pokemon.all %}
         <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}" class="pokemon-link link">Player Pokémon</a>
       {% endif %}
       {% if campaign.npcs.all or campaign.npc_pokemon.all %}

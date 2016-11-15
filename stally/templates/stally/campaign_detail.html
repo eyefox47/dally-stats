@@ -28,7 +28,7 @@
     <h1><a href="{% url 'campaign_character_list' pk=campaign.pk %}" class="">Characters in {{ campaign.name }}</a></h1>
   </div>
 
-  {% for character in campaign.characters.all  %}
+  {% for character in campaign.characters_without_pokemon.all  %}
     <div class="content-box-medium indent-medium">
       {% if not character.image.url == "/media/images/no-img.jpg" %}
         <img class="portrait portrait-small" src="{{ character.image.url }}" alt="{{ Character.name }} image">
@@ -43,12 +43,12 @@
   {% endfor %}
 
   {# Pokemon list (if present) #}
-  {% if campaign.pokemons.all %}
+  {% if campaign.pc_pokemon.all %}
     <div class="page-title">
       <h1><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}" class="">Pokémon in {{ campaign.name }}</a></h1>
     </div>
 
-    {% for pokemon in campaign.npc_pokemon.all  %}
+    {% for pokemon in campaign.pc_pokemon.all  %}
       <div class="content-box-medium indent-medium">
         {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
           <img class="portrait portrait-small" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">

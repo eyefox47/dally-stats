@@ -43,7 +43,7 @@ class Campaign(models.Model):
 
         return characters.exclude(pk__in=pokemon)
 
-    def pokemons(self):
+    def pc_pokemon(self):
         return Pokemon.objects.filter(campaign=self).exclude(player=self.dm)
 
     def npcs(self):

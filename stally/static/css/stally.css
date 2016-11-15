@@ -1,3 +1,8 @@
+/* General */
+h1, h2 {
+    font-family: 'Lobster', cursive;
+}
+
 .page-header {
     background-color: #ff9400;
     margin-top: 0;
@@ -15,35 +20,21 @@
     margin-left: 40px;
 }
 
-h1, h2 {
-    font-family: 'Lobster', cursive;
-}
-
 .date {
   color: #828282;
   font-size: 10pt;
 }
 
+/* Content */
 .class-text {
   color: #828282;
-}
-
-.save {
-    float: right;
 }
 
 .link {
   font-size: 14pt;
 }
 
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
-    float: right;
-    font-size: 26pt;
-    margin-right: 20px;
-}
-
-.campaign {
+.content-box-large {
     margin-bottom: 70px;
 }
 
@@ -65,8 +56,9 @@ h1, h2 {
     color: #000000;
 }
 
+/* Images */
 .portrait {
-  float:right;
+  float: right;
 }
 
 .portrait-large {
@@ -84,11 +76,20 @@ h1, h2 {
   height: 120px;
 }
 
+/* Misc */
+.active {
+  font-weight: bold;
+}
+
+/* Unused */
 .horizontal-line {
   bottom: 0;
   left: 0;
 }
 
-.active {
-  font-weight: bold;
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
 }

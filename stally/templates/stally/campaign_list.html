@@ -10,7 +10,7 @@
   </div>
 
   {% for campaign in campaigns %}
-    <div class="campaign">
+    <div class="content-box-large">
       <h2><a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a></h2>
       <div class="date">
         <p><b>Started on:</b> {{ campaign.start_date }}</p>

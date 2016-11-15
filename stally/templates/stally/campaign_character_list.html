@@ -10,7 +10,7 @@
   </div>
 
   {% for character in characters  %}
-    <div class="content-box-medium indent">
+    <div class="content-box-medium indent-small">
       {% if not character.image.url == "/media/images/no-img.jpg" %}
         <img class="portrait portrait-medium" src="{{ character.image.url }}" alt="{{ character.name }} image">
       {% endif %}

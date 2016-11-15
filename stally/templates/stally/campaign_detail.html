@@ -7,7 +7,7 @@
 
 {# Campagin description #}
 {% block content %}
-  <div class="campaign-small">
+  <div class="content-box-medium">
     <h1>{{ campaign.name }}</h1>
     <div class="date">
       <p><b>Started on:</b> {{ campaign.start_date }}</p>
@@ -29,7 +29,7 @@
   </div>
 
   {% for character in campaign.characters.all  %}
-    <div class="character-small">
+    <div class="content-box-medium indent-medium">
       {% if not character.image.url == "/media/images/no-img.jpg" %}
         <img class="portrait portrait-small" src="{{ character.image.url }}" alt="{{ Character.name }} image">
         {% endif %}
@@ -49,7 +49,7 @@
     </div>
 
     {% for pokemon in campaign.npc_pokemon.all  %}
-      <div class="pokemon">
+      <div class="content-box-medium indent-medium">
         {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
           <img class="portrait portrait-small" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
         {% endif %}
@@ -67,7 +67,7 @@
     </div>
 
     {% for character in campaign.npcs.all  %}
-      <div class="character">
+      <div class="content-box-medium indent">
         {% if not character.image.url == "/media/images/no-img.jpg" %}
           <img class="portrait portrait-small" src="{{ character.image.url }}" alt="{{ Character.name }} image">
         {% endif %}
@@ -88,7 +88,7 @@
     </div>
 
     {% for pokemon in campaign.npc_pokemon.all  %}
-      <div class="pokemon">
+      <div class="content-box-medium indent-medium">
         {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
           <img class="portrait portrait-small" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
         {% endif %}

@@ -25,7 +25,7 @@
   </div>
 
   {% for character in player.main_characters.all  %}
-    <div class="character-small">
+    <div class="content-box-medium indent-medium">
       {% if not character.image.url == "/media/images/no-img.jpg" %}
         <img class="portrait portrait-small" src="{{ character.image.url }}" alt="{{ character.name }} image">
       {% endif %}      <h3><a href="{% url 'character_detail' pk=character.pk %}">{{ character.name }}</a></h3>

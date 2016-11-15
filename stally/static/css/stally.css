@@ -24,9 +24,8 @@ h1, h2 {
   font-size: 10pt;
 }
 
-.kind {
+.class-text {
   color: #828282;
-
 }
 
 .save {
@@ -66,17 +65,23 @@ h1, h2 {
     color: #000000;
 }
 
-.campaign-img {
-  float: right;
-  width: 35%;
-  height: auto;
+.portrait {
+  float:right;
 }
 
-.character-img, .pokemon-img, .player-img {
-  float:right;
-  width: 160px;
-  height: auto;
+.portrait-large {
+  width: auto;
+  height: 148px;
+}
 
+.portrait-medium {
+  width: auto;
+  height: 160px;
+}
+
+.portrait-small {
+  width: auto;
+  height: 120px;
 }
 
 .horizontal-line {

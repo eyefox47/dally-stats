@@ -12,7 +12,7 @@
   {% for pokemon in pokemons.all  %}
     <div class="pokemon">
       {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
-        <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        <img class="portrait portrait-medium" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
       {% endif %}
       <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">{{ pokemon.name }}</a></h3>
       {% include 'stally/_pokemon_attributes.html' %}

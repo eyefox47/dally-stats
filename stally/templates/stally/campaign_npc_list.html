@@ -13,11 +13,11 @@
     {% for character in campaign.npcs.all  %}
       <div class="character">
         {% if not character.image.url == "/media/images/no-img.jpg" %}
-          <img class="character-img" src="{{ character.image.url }}" alt="{{ Character.name }} image">
+          <img class="portrait portrait-small" src="{{ character.image.url }}" alt="{{ Character.name }} image">
         {% endif %}
         <h3><a href="{% url 'character_detail' pk=character.pk %}">{{ character.name }}</a></h3>
         {% if character.cclass %}
-          <div class="kind">
+          <div class="class-text">
             <p>{{ character.cclass }}</p>
           </div>
         {% endif %}
@@ -44,7 +44,7 @@
     {% for pokemon in campaign.npc_pokemon.all  %}
       <div class="pokemon">
         {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
-          <img class="pokemon-img" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+          <img class="portrait portrait-small" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
         {% endif %}
         <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">{{ pokemon.name }}</a></h3>
         {% include 'stally/_pokemon_attributes.html' %}

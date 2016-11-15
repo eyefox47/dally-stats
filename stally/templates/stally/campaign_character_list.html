@@ -12,7 +12,7 @@
   {% for character in characters  %}
     <div class="character">
       {% if not character.image.url == "/media/images/no-img.jpg" %}
-        <img class="character-img" src="{{ character.image.url }}" alt="{{ character.name }} image">
+        <img class="portrait portrait-medium" src="{{ character.image.url }}" alt="{{ character.name }} image">
       {% endif %}
       <h3><a href="{% url 'character_detail' pk=character.pk %}">{{ character.name }}</a></h3>
       {% include 'stally/_character_attributes.html' %}

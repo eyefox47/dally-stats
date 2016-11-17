@@ -38,7 +38,7 @@ class Campaign(models.Model):
         return sorted(set(Player.objects.filter(characters__in=characters).exclude(name=self.dm.name)))
 
     def characters_without_pokemon(self):
-        characters = Character.objects.filter(campaign=self)
+        characters = Character.objects.filter(campaign=self).exclude(pk__in=self.npcs())
         pokemon = Pokemon.objects.filter(campaign=self)
 
         return characters.exclude(pk__in=pokemon)

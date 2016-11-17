@@ -39,7 +39,7 @@
         <p><b>Pronouns:</b> {{ character.pronouns }}</p>
       {% endif %}
       {% if character.description %}
-        <p><b>Description:</b> {{ character.description }}</p>
+        <p><b>Description:</b> {{ character.description|linebreaksbr }}</p>
       {% endif %}
       {% if character.pokemons.all %}
         <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>

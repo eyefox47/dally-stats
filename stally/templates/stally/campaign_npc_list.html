@@ -25,7 +25,7 @@
           <p><b>Pronouns:</b> {{ character.pronouns }}</p>
         {% endif %}
         {% if character.description %}
-          <p><b>Description:</b> {{ character.description }}</p>
+          <p><b>Description:</b> {{ character.description|linebreaksbr }}</p>
         {% endif %}
 
         {% if character.pokemons.all %}

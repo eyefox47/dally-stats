@@ -15,15 +15,15 @@ class Command(BaseCommand):
         for pokemon in pokemons:
             if pokemon.image.url == '/media/images/no-img.jpg' and pokemon.pokedex_nr:
                 number = pokemon.pokedex_nr.partition(',')
-                print("Pokemon {} has no image. Trying to find default. Ids: {}".format(pokemon.name, number))
+                print("Pokemon {} has no image.".format(pokemon.name))
 
                 if number[1] == '' and number[2] == '': # Is not a fusion
-                    print('{} is not a fusion. grabbing normal image.'.format(pokemon.name))
+                    print('{} is not a fusion. grabbing image...'.format(pokemon.name))
                     name = unicodedata.normalize('NFKD', pokemon.kind).encode('ascii', 'ignore').decode('utf-8').lower()
                     url = "https://img.pokemondb.net/artwork/{}.jpg".format(name)
                     self.set_image(url, pokemon)
                 elif len(number) == 3: # Is a fusion of two Pokemon
-                    print('{} is a fusion of {} and {}. Grabbing fusion image.'.format(pokemon.name, number[0], number[2]))
+                    print('{} is a fusion of {} and {}. Grabbing fusion image...'.format(pokemon.name, number[0], number[2]))
                     url = "http://images.alexonsager.net/pokemon/fused/{0}/{0}.{1}.png".format(number[0], number[2])
                     self.set_image(url, pokemon)
 
@@ -34,7 +34,6 @@ class Command(BaseCommand):
             'Accept-Encoding': 'none',
             'Accept-Language': 'en-US,en;q=0.8'
         }
-        print(url)
         try:
             request = urllib.request.Request(url, headers=hdr)
             file_name = os.path.basename(url)
@@ -42,11 +41,10 @@ class Command(BaseCommand):
             with urllib.request.urlopen(request) as in_stream, open(path, 'wb') as out_file:
                 copyfileobj(in_stream, out_file)
 
-            pokemon.image.save(
-                os.path.basename(url),
-                open(path, 'r')
-            )
+            pokemon.image = File(open(path, 'rb'))
             pokemon.save()
+
+            os.remove(os.path.join(settings.MEDIA_ROOT, file_name))
 
             print('Success. new image is {}'.format(url))
         except urllib.error.HTTPError:

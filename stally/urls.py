@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as django_views
 from . import views
 
 urlpatterns = [
@@ -12,6 +13,10 @@ urlpatterns = [
     url(r'^campaign/(?P<pk>\d+)/pokemon/$', views.campaign_pokemon_list, name='campaign_pokemon_list'),
     url(r'^campaign/(?P<pk>\d+)/npcs/$', views.campaign_npc_list, name='campaign_npc_list'),
     url(r'^pokemon/(?P<pk>\d+)/$', views.pokemon_detail, name='pokemon_detail'),
+    url(r'^pokemon/new/$', views.pokemon_new, name='pokemon_new'),
+    url(r'^pokemon/(?P<pk>\d+)/edit/$', views.pokemon_edit, name='pokemon_edit'),
     url(r'^players/(?P<pk>\d+)/$', views.player_detail, name='player_detail'),
     url(r'^about/$', views.about, name='about'),
+    url(r'^accounts/login/$', django_views.login, name='login'),
+    url(r'^accounts/logout/$', django_views.logout, name='logout', kwargs={'next_page': '/'}),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -95,3 +95,16 @@ h1, h2 {
     font-size: 26pt;
     margin-right: 20px;
 }
+
+div#navigation h4 a , div#navigation h4 a:hover, div#navigation h4 a:visited{
+  color: #000000;
+}
+
+.add-content-button {
+  float: right;
+  margin-right: 8px;
+}
+
+.post-form textarea, .post-form input, .post-form select {
+    width: 100%;
+}

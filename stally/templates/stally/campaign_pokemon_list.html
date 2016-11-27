@@ -6,15 +6,18 @@
 
 {% block content %}
   <div class="page-title">
-    <h1>Pokemon in <a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a></h1>
+    <h1>Pokemon in <a href="{% url 'campaign_detail' pk=campaign.pk %}">
+        {{ campaign.name }}</a></h1>
   </div>
 
   {% for pokemon in pokemons  %}
     <div class="content-box-medium indent-small">
       {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
-        <img class="portrait portrait-medium" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+        <img class="portrait portrait-medium" src="{{ pokemon.image.url }}"
+             alt="{{ pokemon.name }} image">
       {% endif %}
-      <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">{{ pokemon.name }}</a></h3>
+      <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">
+          {{ pokemon.name }}</a></h3>
       {% include 'stally/_pokemon_attributes.html' %}
       <!--<div class="horizontal-line"><hr></div>-->
     </div>

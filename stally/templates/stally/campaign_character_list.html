@@ -6,18 +6,22 @@
 
 {% block content %}
   <div class="page-title">
-    <h1>Characters in <a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a></h1>
+    <h1>Characters in <a href="{% url 'campaign_detail' pk=campaign.pk %}">
+        {{ campaign.name }}</a></h1>
   </div>
 
   {% for character in characters  %}
     <div class="content-box-medium indent-small">
       {% if not character.image.url == "/media/images/no-img.jpg" %}
-        <img class="portrait portrait-medium" src="{{ character.image.url }}" alt="{{ character.name }} image">
+        <img class="portrait portrait-medium" src="{{ character.image.url }}"
+             alt="{{ character.name }} image">
       {% endif %}
-      <h3><a href="{% url 'character_detail' pk=character.pk %}">{{ character.name }}</a></h3>
+      <h3><a href="{% url 'character_detail' pk=character.pk %}">
+          {{ character.name }}</a></h3>
       {% include 'stally/_character_attributes.html' %}
       {% if character.pokemons.all %}
-        <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
+        <a href="{% url 'character_pokemon_list' pk=character.pk %}"
+           class="pokemon-link link">Pokémon</a>
       {% endif %}
       <!--<div class="horizontal-line"><hr></div>-->
     </div>

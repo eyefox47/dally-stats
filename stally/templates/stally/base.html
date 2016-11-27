@@ -7,24 +7,33 @@
 <html>
   <head>
     <title>{% block pagetitle %}Dallys RGPs{% endblock %}</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet"
+        href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/
+              bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext">
     <link rel="stylesheet" href="{% static 'css/stally.css' %}">
   </head>
   <body>
     <div class="page-header">
       {% if user.is_authenticated %}
-        <p class="add-content-button">Hello {{ user.username }}<small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-        <a href="{% url 'pokemon_new' %}" class="add-content-button">Add Pokemon</a>
+        <p class="add-content-button">
+            Hello {{ user.username }}
+            <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+        <a href="{% url 'pokemon_new' %}"
+           class="add-content-button">Add Pokemon</a>
       {% else %}
-        <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+        <a href="{% url 'login' %}" class="top-menu">
+            <span class="glyphicon glyphicon-lock"></span></a>
       {% endif %}
       <h1><a href="/">Dallys RPGs</a></h1>
       <div id="navigation">
         <h4>
           <a class="{% active request home %}" href="{{ home }}">Campaigns</a>
-          <a href="http://www.informatik.uni-oldenburg.de/~lucasn/stream/">Audio Stream</a>
+          <a href="http://www.informatik.uni-oldenburg.de/~lucasn/stream/">
+              Audio Stream</a>
           <a class="{% active request about %}" href="{{ about }}">About</a>
         </h4>
       </div>

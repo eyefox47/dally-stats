@@ -1,18 +1,21 @@
 from django.contrib import admin
-from .models import *
+from .models import Player, Campaign, Character, Pokemon, Session
+
 
 class CampaignAdmin(admin.ModelAdmin):
     pass
 
+
 class CharacterAdmin(admin.ModelAdmin):
     pass
+
 
 class PokemonAdmin(admin.ModelAdmin):
     pass
 
+
 class SessionAdmin(admin.ModelAdmin):
     pass
-
 
 
 admin.site.register(Player)

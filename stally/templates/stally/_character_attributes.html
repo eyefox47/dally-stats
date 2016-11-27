@@ -3,7 +3,8 @@
     <p>{{ character.cclass }}</p>
   </div>
 {% endif %}
-<p><b>Player:</b> <a href="{% url 'player_detail' pk=character.player.pk %}">{{ character.player.name }}</a></p>
+<p><b>Player:</b> <a href="{% url 'player_detail' pk=character.player.pk %}">
+    {{ character.player.name }}</a></p>
 {% if character.pronouns %}
   <p><b>Pronouns:</b> {{ character.pronouns }}</p>
 {% endif %}

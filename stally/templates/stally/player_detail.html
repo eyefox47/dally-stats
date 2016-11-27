@@ -7,14 +7,16 @@
 {% block content %}
   <div class="player">
     {% if not player.image.url == "/media/images/no-img.jpg" %}
-      <img class="portrait portrait-large" src="{{ player.image.url }}" alt="{{ player.name }} image">
+      <img class="portrait portrait-large" src="{{ player.image.url }}"
+           alt="{{ player.name }} image">
     {% endif %}
     <h1>{{ player.name }}</h1>
   </div>
   {% if player.campaigns_dming.all %}
   <p><b>DMs:</b>
     {% for campaign in player.campaigns_dming.all %}
-      <a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a>
+      <a href="{% url 'campaign_detail' pk=campaign.pk %}">
+          {{ campaign.name }}</a>
     {% endfor %}
   </p>
   {% endif %}
@@ -27,14 +29,19 @@
   {% for character in player.main_characters.all  %}
     <div class="content-box-medium indent-medium">
       {% if not character.image.url == "/media/images/no-img.jpg" %}
-        <img class="portrait portrait-small" src="{{ character.image.url }}" alt="{{ character.name }} image">
-      {% endif %}      <h3><a href="{% url 'character_detail' pk=character.pk %}">{{ character.name }}</a></h3>
+        <img class="portrait portrait-small" src="{{ character.image.url }}"
+             alt="{{ character.name }} image">
+      {% endif %}
+      <h3><a href="{% url 'character_detail' pk=character.pk %}">
+          {{ character.name }}</a></h3>
       {% if character.cclass %}
         <div class="class-text">
           <p>{{ character.cclass }}</p>
         </div>
       {% endif %}
-      <p><b>Campaign: </b><a href="{% url 'campaign_detail' pk=character.campaign.pk %}">{{ character.campaign }}</a></p>
+      <p><b>Campaign: </b>
+          <a href="{% url 'campaign_detail' pk=character.campaign.pk %}">
+              {{ character.campaign }}</a></p>
       {% if character.pronouns %}
         <p><b>Pronouns:</b> {{ character.pronouns }}</p>
       {% endif %}
@@ -42,7 +49,8 @@
         <p><b>Description:</b> {{ character.description|linebreaksbr }}</p>
       {% endif %}
       {% if character.pokemons.all %}
-        <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
+        <a href="{% url 'character_pokemon_list' pk=character.pk %}"
+           class="pokemon-link link">Pokémon</a>
       {% endif %}
       <!--<div class="horizontal-line"><hr></div>-->
     </div>

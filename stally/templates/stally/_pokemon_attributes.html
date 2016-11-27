@@ -6,7 +6,9 @@
   <p><b>Pronouns</b> {{ pokemon.pronouns }}</p>
 {% endif %}
 {% if pokemon.trainer %}
-  <p><b>Trainer:</b> <a href="{% url 'character_detail' pk=pokemon.trainer.pk %}">{{ pokemon.trainer }}</a></p>
+  <p><b>Trainer:</b> <a href="
+      {% url 'character_detail' pk=pokemon.trainer.pk %}">
+      {{ pokemon.trainer }}</a></p>
 {% endif %}
 {% if pokemon.nature %}
   <p><b>Nature:</b> {{ pokemon.nature }}</p>
@@ -15,5 +17,6 @@
   <p><b>Description:</b> {{ pokemon.description|linebreaksbr }}</p>
 {% endif %}
 {% if user.is_authenticated %}
-  <a class="btn btn-default" href="{% url 'pokemon_edit' pk=pokemon.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+  <a class="btn btn-default" href="{% url 'pokemon_edit' pk=pokemon.pk %}">
+      <span class="glyphicon glyphicon-pencil"></span></a>
 {% endif %}

@@ -7,26 +7,31 @@
 {% block content %}
   <div class="content-box-medium">
     {% if not character.image.url == "/media/images/no-img.jpg" %}
-      <img class="portrait portrait-large" src="{{ character.image.url }}" alt="{{ character.name }} image">
+      <img class="portrait portrait-large" src="{{ character.image.url }}"
+           alt="{{ character.name }} image">
     {% endif %}
     <h1>{{ character.name }}</h1>
     {% include 'stally/_character_attributes.html' %}
     {% if character.pokemons.all %}
-      <a href="{% url 'character_pokemon_list' pk=character.pk %}" class="pokemon-link link">Pokémon</a>
+      <a href="{% url 'character_pokemon_list' pk=character.pk %}"
+         class="pokemon-link link">Pokémon</a>
     {% endif %}
   </div>
 
   {% if character.pokemons.all %}
     <div class="title-small">
-      <h2><a href="{% url 'character_pokemon_list' pk=character.pk %}" class="">{{ character.name }}s Pokémon</a></h2>
+      <h2><a href="{% url 'character_pokemon_list' pk=character.pk %}"
+             class="">{{ character.name }}s Pokémon</a></h2>
     </div>
 
     {% for pokemon in character.pokemons.all  %}
       <div class="content-box-medium indent-medium">
         {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
-          <img class="portrait portrait-small" src="{{ pokemon.image.url }}" alt="{{ pokemon.name }} image">
+          <img class="portrait portrait-small" src="{{ pokemon.image.url }}"
+               alt="{{ pokemon.name }} image">
         {% endif %}
-        <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">{{ pokemon.name }}</a></h3>
+        <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">
+            {{ pokemon.name }}</a></h3>
         {% include 'stally/_pokemon_attributes.html' %}
         <!--<div class="horizontal-line"><hr></div>-->
       </div>

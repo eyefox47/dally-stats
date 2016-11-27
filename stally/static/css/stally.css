@@ -30,6 +30,9 @@ h1, h2 {
   font-size: 10pt;
 }
 
+.login {
+    margin-top: 25px;
+}
 /* Content */
 .class-text {
   color: #828282;

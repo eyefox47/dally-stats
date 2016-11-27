@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Campaign, Character, Pokemon, Player
-from .forms import PokemonForm
+from .forms import PokemonForm, CharacterForm, NPCForm
 
 
 def campaign_list(request):
@@ -48,6 +48,37 @@ def character_detail(request, pk):
     character = get_object_or_404(Character, pk=pk)
     return render(request, 'stally/detail_pages/character_detail.html',
                   {'character': character})
+
+
+@login_required
+def character_new(request):
+    if request.method == "POST":
+        form = CharacterForm(request.POST)
+        if form.is_valid():
+            character = form.save(commit=False)
+
+            character.save()
+            return redirect('character_detail', pk=character.pk)
+    else:
+        form = CharacterForm()
+    return render(request, 'stally/edit_pages/character_edit.html',
+                  {'form': form})
+
+
+@login_required
+def character_edit(request, pk):
+    character = get_object_or_404(Character, pk=pk)
+    if request.method == "POST":
+        form = CharacterForm(request.POST, instance=character)
+        if form.is_valid():
+            character = form.save(commit=False)
+
+            character.save()
+            return redirect('character_detail', pk=character.pk)
+    else:
+        form = CharacterForm(instance=character)
+    return render(request, 'stally/edit_pages/character_edit.html',
+                  {'form': form})
 
 
 def pokemon_detail(request, pk):

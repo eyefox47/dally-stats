@@ -11,3 +11,7 @@
 {% if character.description %}
   <p><b>Description:</b> {{ character.description|linebreaksbr }}</p>
 {% endif %}
+{% if user.is_authenticated %}
+  <a class="btn btn-default" href="{% url 'character_edit' pk=character.pk %}">
+      <span class="glyphicon glyphicon-pencil"></span></a>
+{% endif %}

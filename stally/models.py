@@ -32,10 +32,12 @@ class Campaign(models.Model):
     image = models.ImageField(upload_to='images/campaigns/',
                               default='images/no-img.jpg')
     dm = models.ForeignKey(Player, on_delete=models.CASCADE,
-                           related_name='campaigns_dming')
+                           related_name='campaigns_dming', verbose_name='DM')
     description = models.TextField(blank=True, null=True)
-    start_date = models.DateField(default=timezone.now)
-    end_date = models.DateField(blank=True, null=True)
+    start_date = models.DateField(default=timezone.now,
+                                  verbose_name='Start date')
+    end_date = models.DateField(blank=True, null=True,
+                                verbose_name='End date')
 
     def players(self):
         characters = Character.objects.filter(campaign=self)
@@ -90,7 +92,8 @@ class Character(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE,
                                related_name='characters')
     pronouns = models.CharField(max_length=100, blank=True, null=True)
-    cclass = models.CharField(max_length=200, blank=True, null=True)
+    cclass = models.CharField(max_length=200, blank=True, null=True,
+                              verbose_name='Class')
     description = models.TextField(blank=True, null=True)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,
                                  related_name='characters')
@@ -113,11 +116,12 @@ class Character(models.Model):
 class Pokemon(Character):
     pokedex_nr = models.CharField(
         max_length=7, blank=True, null=True,
-        validators=[validate_comma_separated_integer_list])
+        validators=[validate_comma_separated_integer_list],
+        verbose_name='Pokédex number')
     trainer = models.ForeignKey(
         Character, on_delete=models.CASCADE, related_name='pokemons',
         blank=True, null=True)
-    type_p = models.CharField(max_length=200)
+    type_p = models.CharField(max_length=200, verbose_name='Type')
     nature = models.CharField(max_length=200, blank=True, null=True)
     kind = models.CharField(max_length=200)
 

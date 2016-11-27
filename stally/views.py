@@ -81,6 +81,21 @@ def character_edit(request, pk):
                   {'form': form})
 
 
+@login_required
+def npc_new(request):
+    if request.method == "POST":
+        form = NPCForm(request.POST)
+        if form.is_valid():
+            character = form.save(commit=False)
+            character.player = character.campaign.dm
+            character.save()
+            return redirect('character_detail', pk=character.pk)
+    else:
+        form = NPCForm()
+    return render(request, 'stally/edit_pages/npc_edit.html',
+                  {'form': form})
+
+
 def pokemon_detail(request, pk):
     pokemon = get_object_or_404(Pokemon, pk=pk)
     return render(request, 'stally/detail_pages/pokemon_detail.html',

@@ -22,6 +22,8 @@
         <p class="add-content-button">
             Hello {{ user.username }}
             <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+        <a href="{% url 'npc_new' %}"
+           class="add-content-button">Add NPC</a>
         <a href="{% url 'character_new' %}"
            class="add-content-button">Add Character</a>
         <a href="{% url 'pokemon_new' %}"

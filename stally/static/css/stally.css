@@ -21,6 +21,20 @@ h1, h2 {
     text-decoration: none;
 }
 
+.navbar .navbar-nav .dropdown-menu li a:hover {
+	background: #a86200;
+}
+
+.navbar .navbar-nav li a:hover {
+  background: #a86200;
+}
+
+.navbar .nav > li.dropdown.open.active > a:hover,
+.navbar .nav > li.dropdown.open > a {
+  background: #543100;
+  color: #ffffff;
+}
+
 .page-title {
   color: #000000;
 }
@@ -89,7 +103,8 @@ h1, h2 {
 
 /* Misc */
 .active {
-  font-weight: bold;
+  background: #543100;
+  color: #ffffff;
 }
 
 /* Unused */

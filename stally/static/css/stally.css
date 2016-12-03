@@ -84,6 +84,7 @@ h1, h2 {
 /* Images */
 .portrait {
   float: right;
+  margin-left: 9px;
 }
 
 .portrait-large {

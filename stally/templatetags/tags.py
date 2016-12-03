@@ -14,3 +14,10 @@ def active(request, pattern):
     if re.search(pattern, request.path):
         return 'active'
     return ''
+
+
+@register.inclusion_tag('stally/campaigns_list_items.html')
+def campaigns_list_items():
+    from stally.models import Campaign
+    campaigns = Campaign.objects.all()
+    return {'campaigns': campaigns}

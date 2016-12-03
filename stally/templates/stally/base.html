@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load tags %}
+
 {% url 'about' as about %}
 {% url 'campaign_list' as home %}
 
@@ -11,8 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block pagetitle %}Dallys RGPs{% endblock %}</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/
-              bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext">
     <link rel="stylesheet" href="{% static 'css/stally.css' %}">
 </head>
@@ -35,9 +35,9 @@
                             <a href="{{ home }}" class="dropdown-toggle {% active request home %}" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Campaigns<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Development</a></li>
-                                <li><a href="#">Consulting</a></li>
+                                <li><a href="{% url 'campaign_list' %}">Overview</a></li>
+                                <li class="divider"></li>
+                                {% campaigns_list_items %}
                             </ul>
                         </li>
                         <li><a href="http://www.informatik.uni-oldenburg.de/~lucasn/stream/">

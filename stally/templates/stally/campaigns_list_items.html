@@ -1,0 +1,3 @@
+{% for campaign in campaigns %}
+  <li><a href="{% url 'campaign_detail' pk=campaign.pk %}">{{ campaign.name }}</a></li>
+{% endfor %}

@@ -84,7 +84,9 @@ h1, h2 {
 /* Images */
 .portrait {
   /*float: right;*/
-  margin-left: 9px;
+
+  /*margin-left: 9px;*/
+  margin-bottom: 7px;
 }
 
 .portrait-large {

@@ -16,7 +16,7 @@
       <div class="date">
         <p><b>Started on:</b> {{ campaign.start_date }}</p>
       </div>
-      <img class="portrait portrait-large"
+      <img class="portrait portrait-large pull-right"
            src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
       {% include 'stally/_campaign_attributes.html' %}
       <a href="{% url 'campaign_character_list' pk=campaign.pk %}"

@@ -83,7 +83,7 @@ h1, h2 {
 
 /* Images */
 .portrait {
-  float: right;
+  /*float: right;*/
   margin-left: 9px;
 }
 

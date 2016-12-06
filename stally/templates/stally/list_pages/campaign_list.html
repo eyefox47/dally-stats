@@ -17,11 +17,11 @@
         <p><b>Started on:</b> {{ campaign.start_date }}</p>
         </div>
         <div class="row">
-            <div class="col-md-2 col-md-push-8">
-                <img class="portrait portrait-large pull-right"
+            <div class="col-md-4 col-md-push-6">
+                <img class="portrait img-fluid"
                    src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
            </div>
-           <div class="col-md-8 col-md-pull-2">
+           <div class="col-md-6 col-md-pull-4">
                 {% include 'stally/_campaign_attributes.html' %}
                 <a href="{% url 'campaign_character_list' pk=campaign.pk %}"
                  class="characters-link link">Characters</a>

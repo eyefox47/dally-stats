@@ -30,7 +30,8 @@ h1, h2 {
 }
 
 .navbar .nav > li.dropdown.open.active > a:hover,
-.navbar .nav > li.dropdown.open > a {
+.navbar .nav > li.dropdown.open > a,
+.navbar .nav > li:active {
   background: #543100;
   color: #ffffff;
 }
@@ -74,7 +75,7 @@ h1, h2 {
 }
 
 .content-box-medium {
-   margin-bottom: 50px;
+   margin-bottom: 20px;
 }
 
 .content-box-large h2 a, .content-box-large h2 a:visited {
@@ -84,24 +85,28 @@ h1, h2 {
 /* Images */
 .portrait {
   /*float: right;*/
-
   /*margin-left: 9px;*/
+  max-width: 100%;
+  height: auto;
   margin-bottom: 7px;
 }
 
 .portrait-large {
   width: auto;
-  height: 148px;
+  height: 200px;
+  float:right;
 }
 
 .portrait-medium {
   width: auto;
   height: 160px;
+  float:right;
 }
 
 .portrait-small {
   width: auto;
   height: 120px;
+  float:right;
 }
 
 /* Misc */

@@ -11,19 +11,23 @@
   </div>
 
   {% for character in characters  %}
-    <div class="content-box-medium indent-small">
-      {% if not character.image.url == "/media/images/no-img.jpg" %}
-        <img class="portrait portrait-medium" src="{{ character.image.url }}"
+
+    <div class="row content-box-medium">
+      <div class="col-md-3 col-md-push-7">
+        {% if not character.image.url == "/media/images/no-img.jpg" %}
+          <img class="portrait img-fluid" src="{{ character.image.url }}"
              alt="{{ character.name }} image">
-      {% endif %}
-      <h3><a href="{% url 'character_detail' pk=character.pk %}">
+        {% endif %}
+      </div>
+      <div class="col-md-7 col-md-pull-3">
+        <h3><a href="{% url 'character_detail' pk=character.pk %}">
           {{ character.name }}</a></h3>
-      {% include 'stally/_character_attributes.html' %}
-      {% if character.pokemons.all %}
-        <a href="{% url 'character_pokemon_list' pk=character.pk %}"
+        {% include 'stally/_character_attributes.html' %}
+        {% if character.pokemons.all %}
+          <a href="{% url 'character_pokemon_list' pk=character.pk %}"
            class="pokemon-link link">Pokémon</a>
       {% endif %}
-      <!--<div class="horizontal-line"><hr></div>-->
+      </div>
     </div>
   {% endfor %}
 {% endblock %}

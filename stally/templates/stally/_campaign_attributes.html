@@ -1,7 +1,29 @@
-<p><b>DM:</b> <a href="{% url 'player_detail' pk=campaign.dm.pk %}">
-    {{ campaign.dm }}</a></p>
-<p><b>Players:</b>
-  {% for player in campaign.players %}
-    <a href="{% url 'player_detail' pk=player.pk %}">{{ player }}</a>
-  {% endfor %}
-<p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
+<div class="date">
+  <p><b>Started on:</b> {{ campaign.start_date }}</p>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-push-6">
+        <img class="portrait img-fluid"
+           src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
+   </div>
+   <div class="col-md-6 col-md-pull-4">
+      <p><b>DM:</b> <a href="{% url 'player_detail' pk=campaign.dm.pk %}">
+          {{ campaign.dm }}</a></p>
+      <p><b>Players:</b>
+        {% for player in campaign.players %}
+          <a href="{% url 'player_detail' pk=player.pk %}">{{ player }}</a>
+        {% endfor %}
+      <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
+      <a href="{% url 'campaign_character_list' pk=campaign.pk %}"
+       class="characters-link link">Characters</a>
+      {% if campaign.pc_pokemon.all %}
+      <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}"
+                  class="pokemon-link link">Player Pokémon</a>
+      {% endif %}
+      {% if campaign.npcs.all or campaign.npc_pokemon.all %}
+      <i>, </i><a href="{% url 'campaign_npc_list' pk=campaign.pk %}"
+                  class="npc-link link">NPCs</a>
+      {% endif %}
+    </div>
+
+</div>

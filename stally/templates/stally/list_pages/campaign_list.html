@@ -10,32 +10,10 @@
   </div>
 
   {% for campaign in campaigns %}
-    <div class="content-box-large indent-none">
-        <h2><a href="{% url 'campaign_detail' pk=campaign.pk %}">
-          {{ campaign.name }}</a></h2>
-        <div class="date">
-        <p><b>Started on:</b> {{ campaign.start_date }}</p>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-md-push-6">
-                <img class="portrait img-fluid"
-                   src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
-           </div>
-           <div class="col-md-6 col-md-pull-4">
-                {% include 'stally/_campaign_attributes.html' %}
-                <a href="{% url 'campaign_character_list' pk=campaign.pk %}"
-                 class="characters-link link">Characters</a>
-                {% if campaign.pc_pokemon.all %}
-                <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}"
-                            class="pokemon-link link">Player Pokémon</a>
-                {% endif %}
-                {% if campaign.npcs.all or campaign.npc_pokemon.all %}
-                <i>, </i><a href="{% url 'campaign_npc_list' pk=campaign.pk %}"
-                            class="npc-link link">NPCs</a>
-                {% endif %}
-            </div>
-
-        </div>
+    <div class="content-box-large">
+      <h2><a href="{% url 'campaign_detail' pk=campaign.pk %}">
+        {{ campaign.name }}</a></h2>
+      {% include 'stally/_campaign_attributes.html' %}
     </div>
   {% endfor %}
 {% endblock %}

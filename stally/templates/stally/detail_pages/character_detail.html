@@ -5,18 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="content-box-medium">
-    {% if not character.image.url == "/media/images/no-img.jpg" %}
-      <img class="portrait portrait-large" src="{{ character.image.url }}"
-           alt="{{ character.name }} image">
-    {% endif %}
-    <h1>{{ character.name }}</h1>
-    {% include 'stally/_character_attributes.html' %}
-    {% if character.pokemons.all %}
-      <a href="{% url 'character_pokemon_list' pk=character.pk %}"
-         class="pokemon-link link">Pokémon</a>
-    {% endif %}
-  </div>
+  {% include 'stally/_character_attributes.html' %}
 
   {% if character.pokemons.all %}
     <div class="title-small">

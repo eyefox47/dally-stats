@@ -12,35 +12,7 @@
     </div>
 
     {% for character in campaign.npcs.all  %}
-      <div class="row content-box-medium">
-        <div class="col-md-3 col-md-push-7">
-          {% if not character.image.url == "/media/images/no-img.jpg" %}
-            <img class="portrait portrait-small" src="{{ character.image.url }}"
-                 alt="{{ Character.name }} image">
-          {% endif %}
-        </div>
-        <div class="col-md-7 col-md-pull-3">
-          <h3><a href="{% url 'character_detail' pk=character.pk %}">
-              {{ character.name }}</a></h3>
-          {% if character.cclass %}
-            <div class="class-text">
-              <p>{{ character.cclass }}</p>
-            </div>
-          {% endif %}
-          {% if character.pronouns %}
-            <p><b>Pronouns:</b> {{ character.pronouns }}</p>
-          {% endif %}
-          {% if character.description %}
-            <p><b>Description:</b> {{ character.description|linebreaksbr }}</p>
-          {% endif %}
-
-          {% if character.pokemons.all %}
-            <a href="{% url 'character_pokemon_list' pk=character.pk %}"
-               class="pokemon-link link">Pokémon</a>
-          {% endif %}
-          <!--<div class="horizontal-line"><hr></div>-->
-        </div>
-      </div>
+      {% include 'stally/_character_attributes.html' %}
     {% endfor %}
   {% endif %}
 

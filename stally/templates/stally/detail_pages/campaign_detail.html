@@ -34,20 +34,7 @@
   </div>
 
   {% for character in campaign.characters_without_pokemon.all  %}
-    <div class="content-box-medium indent-medium">
-      {% if not character.image.url == "/media/images/no-img.jpg" %}
-        <img class="portrait portrait-small" src="{{ character.image.url }}"
-             alt="{{ Character.name }} image">
-        {% endif %}
-      <h3><a href="{% url 'character_detail' pk=character.pk %}">
-          {{ character.name }}</a></h3>
-      {% include 'stally/_character_attributes.html' %}
-      {% if character.pokemons.all %}
-        <a href="{% url 'character_pokemon_list' pk=character.pk %}"
-           class="pokemon-link link">Pokémon</a>
-      {% endif %}
-      <!--<div class="horizontal-line"><hr></div>-->
-    </div>
+    {% include 'stally/_character_attributes.html' %}
   {% endfor %}
 
   {# Pokemon list (if present) #}
@@ -79,20 +66,7 @@
     </div>
 
     {% for character in campaign.npcs.all  %}
-      <div class="content-box-medium indent-medium">
-        {% if not character.image.url == "/media/images/no-img.jpg" %}
-          <img class="portrait portrait-small" src="{{ character.image.url }}"
-               alt="{{ Character.name }} image">
-        {% endif %}
-        <h3><a href="{% url 'character_detail' pk=character.pk %}">
-            {{ character.name }}</a></h3>
-        {% include 'stally/_character_attributes.html' %}
-        {% if character.pokemons.all %}
-          <a href="{% url 'character_pokemon_list' pk=character.pk %}"
-             class="pokemon-link link">Pokémon</a>
-        {% endif %}
-        <!--<div class="horizontal-line"><hr></div>-->
-      </div>
+      {% include 'stally/_character_attributes.html' %}
     {% endfor %}
   {% endif %}
 

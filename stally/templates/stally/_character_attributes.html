@@ -1,4 +1,4 @@
-<div class="row content-box-medium">
+<div class="row">
   <div class="col-md-3 col-md-push-7">
     {% if not character.image.url == "/media/images/no-img.jpg" %}
       <img class="portrait img-fluid" src="{{ character.image.url }}"
@@ -6,8 +6,6 @@
     {% endif %}
   </div>
   <div class="col-md-7 col-md-pull-3">
-    <h3><a href="{% url 'character_detail' pk=character.pk %}">
-      {{ character.name }}</a></h3>
       {% if character.cclass %}
         <div class="class-text">
           <p>{{ character.cclass }}</p>

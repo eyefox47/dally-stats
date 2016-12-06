@@ -17,6 +17,8 @@
   </div>
 
   {% for character in campaign.characters_without_pokemon.all  %}
+    <h3><a href="{% url 'character_detail' pk=character.pk %}">
+      {{ character.name }}</a></h3>
     {% include 'stally/_character_attributes.html' %}
   {% endfor %}
 

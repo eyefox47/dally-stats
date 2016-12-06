@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+  <h1>{{ character.name }}</h1>
   {% include 'stally/_character_attributes.html' %}
 
   {% if character.pokemons.all %}

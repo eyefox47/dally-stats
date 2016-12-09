@@ -7,7 +7,7 @@ h1, h2 {
     background-color: #ff9400;
     margin-top: 0;
     margin-bottom: 0;
-    padding: 20px 20px 0 40px;
+    padding: 20px 40px 0 40px;
 }
 
 .glyphicon-small {
@@ -34,6 +34,10 @@ h1, h2 {
 .navbar .nav > li:active {
   background: #543100;
   color: #ffffff;
+}
+
+.navbar .navbar-toggle .icon-bar {
+  background-color: black;
 }
 
 .page-title {
@@ -128,7 +132,6 @@ h1, h2 {
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;
     font-size: 26pt;
-    margin-right: 20px;
 }
 
 div#navigation h4 a , div#navigation h4 a:hover, div#navigation h4 a:visited{

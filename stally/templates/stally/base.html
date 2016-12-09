@@ -30,46 +30,48 @@
         				<span class="icon-bar"></span>
         				<span class="icon-bar"></span>
         			</button>
-                    <ul class="nav navbar-nav navbar-left">
-                        <li class="dropdown">
-                            <a href="{{ home }}" class="dropdown-toggle {% active request home %}" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false">Campaigns<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'campaign_list' %}">Overview</a></li>
-                                <li class="divider"></li>
-                                {% campaigns_list_items %}
-                            </ul>
-                        </li>
-                        <li><a href="http://www.informatik.uni-oldenburg.de/~lucasn/stream/">
-                            Audio Stream</a></li>
-                        <li><a class="{% active request about %}" href="{{ about }}">About</a></li>
-                    </ul>
                 </div>
+
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if user.is_authenticated %}
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false">New<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'npc_new' %}" class="">Add NPC</a></li>
-                                <li><a href="{% url 'character_new' %}" class="">Add Character</a></li>
-                                <li><a href="{% url 'pokemon_new' %}" class="">Add Pokémon</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false">Hello {{ user.username }}<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% url 'admin:index' %}" class="">Admin</a></li>
-                                <li><a href="{% url 'logout' %}" class="">Log out</a></li>
-                            </ul>
-                        </li>
-                      {% else %}
-                        <li><a href="{% url 'login' %}" class="top-menu">
-                            <span class="glyphicon glyphicon-lock glyphicon-small" aria-hidden="true"></span></a></li>
-                      {% endif %}
-                    </ul>
+                  <ul class="nav navbar-nav navbar-left">
+                      <li class="dropdown">
+                          <a href="{{ home }}" class="dropdown-toggle {% active request home %}" data-toggle="dropdown" role="button" aria-haspopup="true"
+                              aria-expanded="false">Campaigns<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="{% url 'campaign_list' %}">Overview</a></li>
+                              <li class="divider"></li>
+                              {% campaigns_list_items %}
+                          </ul>
+                      </li>
+                      <li><a href="http://www.informatik.uni-oldenburg.de/~lucasn/stream/">
+                          Audio Stream</a></li>
+                      <li><a class="{% active request about %}" href="{{ about }}">About</a></li>
+                  </ul>
+
+                  <ul class="nav navbar-nav navbar-right">
+                      {% if user.is_authenticated %}
+                      <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                              aria-expanded="false">New<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="{% url 'npc_new' %}" class="">Add NPC</a></li>
+                              <li><a href="{% url 'character_new' %}" class="">Add Character</a></li>
+                              <li><a href="{% url 'pokemon_new' %}" class="">Add Pokémon</a></li>
+                          </ul>
+                      </li>
+                      <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                              aria-expanded="false">Hello {{ user.username }}<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="{% url 'admin:index' %}" class="">Admin</a></li>
+                              <li><a href="{% url 'logout' %}" class="">Log out</a></li>
+                          </ul>
+                      </li>
+                    {% else %}
+                      <li><a href="{% url 'login' %}" class="top-menu">
+                          <span class="glyphicon glyphicon-lock glyphicon-small" aria-hidden="true"></span></a></li>
+                    {% endif %}
+                  </ul>
             </div>
         </nav>
     </div>

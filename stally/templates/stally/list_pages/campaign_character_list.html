@@ -11,8 +11,10 @@
   </div>
 
   {% for character in characters  %}
-    <h3><a href="{% url 'character_detail' pk=character.pk %}">
-      {{ character.name }}</a></h3>
-    {% include 'stally/_character_attributes.html' %}
+    <div class="content-box-medium">
+      <h3><a href="{% url 'character_detail' pk=character.pk %}">
+        {{ character.name }}</a></h3>
+      {% include 'stally/_character_attributes.html' %}
+    </div>
   {% endfor %}
 {% endblock %}

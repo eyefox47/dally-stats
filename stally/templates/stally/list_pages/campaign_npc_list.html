@@ -12,7 +12,11 @@
     </div>
 
     {% for character in campaign.npcs.all  %}
-      {% include 'stally/_character_attributes.html' %}
+      <div class="content-box-medium">
+        <h3><a href="{% url 'character_detail' pk=character.pk %}">
+            {{ character.name }}</a></h3>
+        {% include 'stally/_character_attributes.html' %}
+      </div>
     {% endfor %}
   {% endif %}
 
@@ -23,7 +27,7 @@
     </div>
 
     {% for pokemon in campaign.npc_pokemon.all  %}
-      <div class="row content-box-medium">
+      <div class="content-box-medium">
         <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">
             {{ pokemon.name }}</a></h3>
         {% include 'stally/_pokemon_attributes.html' %}

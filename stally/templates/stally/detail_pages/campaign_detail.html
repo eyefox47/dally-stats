@@ -5,9 +5,12 @@
 {% endblock %}
 
 
-{# Campagin description #}
 {% block content %}
-  <h1>{{ campaign.name }}</h1>
+  <div class="page-title">
+    <h1>{{ campaign.name }}</h1>
+  </div>
+
+  {# Campagin description #}
   {% include 'stally/_campaign_attributes.html' %}
 
   {# Character list #}

@@ -9,16 +9,16 @@
     <h1>{{ player.name }}</h1>
   </div>
 
-  <div class="content-box-medium">
+  <div class="content-box-small">
     <div class="row">
-      <div class="col-md-3 col-md-push-7">
+      <div class="col-md-2 col-md-push-6">
         {% if not player.image.url == "/media/images/no-img.jpg" %}
           <img class="portrait img-fluid" src="{{ player.image.url }}"
                alt="{{ player.name }} image">
         {% endif %}
       </div>
 
-      <div class="col-md-7 col-md-pull-3">
+      <div class="col-md-6 col-md-pull-2">
         {% if player.campaigns_dming.all %}
           <p><b>DMs:</b>
             {% for campaign in player.campaigns_dming.all %}

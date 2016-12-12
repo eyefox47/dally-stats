@@ -4,6 +4,10 @@ from .models import Campaign, Character, Pokemon, Player
 from .forms import PokemonForm, CharacterForm, NPCForm
 
 
+def start(request):
+    return render(request, 'stally/start.html', {})
+
+
 def campaign_list(request):
     campaigns = Campaign.objects.all().order_by('start_date').reverse()
     return render(request, 'stally/list_pages/campaign_list.html',

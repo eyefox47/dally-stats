@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.start, name='start'),
-    url(r'^campaigns', views.campaign_list, name='campaign_list'),
+    url(r'^campaigns$', views.campaign_list, name='campaign_list'),
     url(r'^campaigns/(?P<pk>\d+)/characters/$', views.campaign_character_list,
         name='campaign_character_list'),
     url(r'^campaigns/(?P<pk>\d+)/$',

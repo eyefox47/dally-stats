@@ -1,0 +1,21 @@
+{% extends 'stally/base.html' %}
+
+{% block pagetitle %}
+  Dallys RGPs
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Welcome to Dallys RPGs!</h1>
+            <p>This website is meant to serve as an overview for the role-playing
+                campaigns streamed by <a target="_blank" href="http://dallydaydream.tumblr.com/">DallyDaydream</a>
+                and the characters in those campaigns.</p>
+            <p><b>Important: This site may contain spoilers for any of the listed campaigns.
+                You have been warned.</b></p>
+            <br>
+            <p><a class="btn btn-primary btn-lg" href="{% url 'campaign_list' %}" role="button">Campaigns »</a>
+                <a class="btn btn-primary btn-lg" target="_blank" href="https://www.youtube.com/channel/UCQqETl88a5aGrM0_vpGo_0Q" role="button">Recordings on YouTube »</a></p>
+        </div>
+    </div>
+{% endblock %}

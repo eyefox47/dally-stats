@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'dally_stats.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dally_stats',
+        'USER': 'eyefox',
+        'PASSWORD': '6obB[;Ln]Ea%-]$v8xujhSbAKBp<6L',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 

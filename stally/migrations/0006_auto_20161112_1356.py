@@ -17,12 +17,6 @@ class Migration(migrations.Migration):
             name='pokedex_nr',
             field=models.IntegerField(blank=True, null=True),
         ),
-        migrations.AddField(
-            model_name='session',
-            name='id',
-            field=models.AutoField(auto_created=True, default=0, primary_key=True, serialize=False, verbose_name='ID'),
-            preserve_default=False,
-        ),
         migrations.AlterField(
             model_name='session',
             name='number',

@@ -46,8 +46,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Session',
             fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
-                ('number', models.IntegerField(primary_key=True, serialize=False)),
+                ('number', models.IntegerField(blank=True, null=True)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('date', models.DateField(default=django.utils.timezone.now)),
                 ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sessions', to='stally.Campaign')),

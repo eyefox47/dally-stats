@@ -153,8 +153,8 @@ div#navigation h4 a , div#navigation h4 a:hover, div#navigation h4 a:visited{
 	margin-bottom: 5px;
 }
 .btn-primary:hover {
-  color: #27A967;
-  background-color: white;
+  /*color: #27A967;
+  background-color: white;*/
 	border-color: white;
 }
 

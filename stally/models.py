@@ -5,7 +5,15 @@ from django.utils import timezone
 from django.core.validators import validate_comma_separated_integer_list
 
 
-class Player(models.Model):
+class BaseModel(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class Player(BaseModel):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images/players/',
                               default='images/no-img.jpg')
@@ -27,7 +35,7 @@ class Player(models.Model):
         ordering = ['name']
 
 
-class Campaign(models.Model):
+class Campaign(BaseModel):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='images/campaigns/',
                               default='images/no-img.jpg')
@@ -70,7 +78,7 @@ class Campaign(models.Model):
         ordering = ['name']
 
 
-class Session(models.Model):
+class Session(BaseModel):
     name = models.CharField(max_length=200)
     number = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
@@ -85,7 +93,7 @@ class Session(models.Model):
         ordering = ['name']
 
 
-class Character(models.Model):
+class Character(BaseModel):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images/characters/',
                               default='images/no-img.jpg')

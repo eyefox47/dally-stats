@@ -121,25 +121,30 @@ class Character(BaseModel):
         ordering = ['name']
 
 
-class Pokemon(Character):
+class Trainee(Character):
+    trainer = models.ForeignKey(
+        Character, on_delete=models.CASCADE, related_name='trainees',
+        blank=True, null=True)
+
+
+class Pokemon(Trainee):
     pokedex_nr = models.CharField(
         max_length=7, blank=True, null=True,
         validators=[validate_comma_separated_integer_list],
         verbose_name='Pokédex number')
-    trainer = models.ForeignKey(
-        Character, on_delete=models.CASCADE, related_name='pokemons',
-        blank=True, null=True)
     type_p = models.CharField(max_length=200, verbose_name='Type')
     nature = models.CharField(max_length=200, blank=True, null=True)
     kind = models.CharField(max_length=200)
 
-    def create_pokemon(character, name, type_p, kind):
+    def create_pokemon(character, name, pokedex_nr, type_p, nature, kind):
         new_pokemon = Pokemon(name=name, player=character.player,
-                              campaign=character.campaign, trainer=character,
-                              type_p=type_p, kind=kind)
+                              campaign=character.campaign,
+                              pokedex_nr=pokedex_nr,
+                              trainer=character,
+                              type_p=type_p, nature=nature, kind=kind)
         new_pokemon.save()
 
     class Meta:
         ordering = ['name']
-        verbose_name = 'Pokémon'
-        verbose_name_plural = 'Pokémon'
+        verbose_name = 'Pokémon_new'
+        verbose_name_plural = 'Pokémon_new'

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pokemon, Character
+from .models import Pokemon, Character, Pet
 
 
 class PokemonForm(forms.ModelForm):
@@ -16,6 +16,14 @@ class CharacterForm(forms.ModelForm):
     class Meta:
         model = Character
         fields = ('image', 'name', 'player', 'campaign', 'pronouns',
+                  'cclass', 'description')
+
+
+class PetForm(forms.ModelForm):
+
+    class Meta:
+        model = Pet
+        fields = ('image', 'name', 'player', 'trainer', 'campaign', 'pronouns',
                   'cclass', 'description')
 
 

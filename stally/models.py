@@ -108,6 +108,9 @@ class Character(BaseModel):
     in_campaign_since = models.ForeignKey(Session, on_delete=models.CASCADE,
                                           blank=True, null=True)
 
+    def pets(self):
+        return Pet.objects.filter(trainer=self)
+
     def is_npc(self):
         return self.player == self.campaign.dm
 
@@ -148,3 +151,7 @@ class Pokemon(Trainee):
         ordering = ['name']
         verbose_name = 'Pokémon'
         verbose_name_plural = 'Pokémon'
+
+
+class Pet(Trainee):
+    pass

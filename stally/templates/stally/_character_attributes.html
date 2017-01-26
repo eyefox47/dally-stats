@@ -29,6 +29,10 @@
       {% if character.pokemons.all %}
       <a href="{% url 'character_pokemon_list' pk=character.pk %}"
        class="pokemon-link link">Pokémon</a>
-  {% endif %}
+      {% endif %}
+      {% if character.pets.all %}
+      <a href="{% url 'character_pet_list' pk=character.pk %}"
+       class="pokemon-link link">Pets</a>
+      {% endif %}
   </div>
 </div>

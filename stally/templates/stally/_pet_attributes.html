@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-2 col-md-push-6">
+    {% if not pet.image.url == "/media/images/no-img.jpg" %}
+      <img class="portrait img-fluid" src="{{ pet.image.url }}"
+         alt="{{ pet.name }} image">
+    {% endif %}
+  </div>
+  <div class="col-md-6 col-md-pull-2">
+      {% if pet.cclass %}
+        <div class="class-text">
+          <p>{{ pet.cclass }}</p>
+        </div>
+      {% endif %}
+      <p><b>Player:</b> <a href="{% url 'player_detail' pk=pet.player.pk %}">
+          {{ pet.player.name }}</a></p>
+      <p><b>Campaign: </b>
+          <a href="{% url 'campaign_detail' pk=pet.campaign.pk %}">
+              {{ pet.campaign }}</a></p>
+      {% if pet.trainer %}
+        <p><b>Trainer:</b> <a href="
+            {% url 'character_detail' pk=pet.trainer.pk %}">
+            {{ pet.trainer }}</a></p>
+      {% endif %}
+      {% if pet.pronouns %}
+        <p><b>Pronouns:</b> {{ pet.pronouns }}</p>
+      {% endif %}
+      {% if pet.description %}
+        <p><b>Description:</b> {{ pet.description|linebreaksbr }}</p>
+      {% endif %}
+      {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'pet_edit' pk=pet.pk %}">
+            <span class="glyphicon glyphicon-pencil"></span></a>
+      {% endif %}
+  </div>
+</div>

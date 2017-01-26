@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Campaign, Character, Pokemon, Player
-from .forms import PokemonForm, CharacterForm, NPCForm
+from .models import Campaign, Character, Pokemon, Player, Pet
+from .forms import PokemonForm, CharacterForm, NPCForm, PetForm
 
 
 def start(request):
@@ -29,6 +29,13 @@ def character_pokemon_list(request, pk):
                   {'character': character, 'pokemons': pokemons})
 
 
+def character_pet_list(request, pk):
+    character = get_object_or_404(Character, pk=pk)
+    pets = character.pets
+    return render(request, 'stally/list_pages/character_pet_list.html',
+                  {'character': character, 'pets': pets})
+
+
 def campaign_pokemon_list(request, pk):
     campaign = get_object_or_404(Campaign, pk=pk)
     pokemons = campaign.pc_pokemon()
@@ -52,6 +59,12 @@ def character_detail(request, pk):
     character = get_object_or_404(Character, pk=pk)
     return render(request, 'stally/detail_pages/character_detail.html',
                   {'character': character})
+
+
+def pet_detail(request, pk):
+    pet = get_object_or_404(Pet, pk=pk)
+    return render(request, 'stally/detail_pages/pet_detail.html',
+                  {'pet': pet})
 
 
 @login_required
@@ -134,6 +147,37 @@ def pokemon_edit(request, pk):
     else:
         form = PokemonForm(instance=pokemon)
     return render(request, 'stally/edit_pages/pokemon_edit.html',
+                  {'form': form})
+
+
+@login_required
+def pet_new(request):
+    if request.method == "POST":
+        form = PetForm(request.POST)
+        if form.is_valid():
+            pet = form.save(commit=False)
+
+            pet.save()
+            return redirect('pet_detail', pk=pet.pk)
+    else:
+        form = PetForm()
+    return render(request, 'stally/edit_pages/pet_edit.html',
+                  {'form': form})
+
+
+@login_required
+def pet_edit(request, pk):
+    pet = get_object_or_404(Pet, pk=pk)
+    if request.method == "POST":
+        form = CharacterForm(request.POST, instance=pet)
+        if form.is_valid():
+            pet = form.save(commit=False)
+
+            pet.save()
+            return redirect('pet_detail', pk=pet.pk)
+    else:
+        form = PetForm(instance=pet)
+    return render(request, 'stally/edit_pages/pet_edit.html',
                   {'form': form})
 
 

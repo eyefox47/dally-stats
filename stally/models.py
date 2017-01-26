@@ -146,5 +146,5 @@ class Pokemon(Trainee):
 
     class Meta:
         ordering = ['name']
-        verbose_name = 'Pokémon_new'
-        verbose_name_plural = 'Pokémon_new'
+        verbose_name = 'Pokémon'
+        verbose_name_plural = 'Pokémon'

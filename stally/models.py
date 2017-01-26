@@ -106,7 +106,11 @@ class Character(BaseModel):
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,
                                  related_name='characters')
     in_campaign_since = models.ForeignKey(Session, on_delete=models.CASCADE,
+
                                           blank=True, null=True)
+
+    def pokemons(self):
+        return Pokemon.objects.filter(trainer=self)
 
     def pets(self):
         return Pet.objects.filter(trainer=self)

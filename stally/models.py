@@ -81,17 +81,21 @@ class Campaign(BaseModel):
         ordering = ['name']
 
 
+class URL(BaseModel):
+    link = models.URLField()
+
+
 class Session(BaseModel):
     name = models.CharField(max_length=200)
     date = models.DateField(default=timezone.now)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,
                                  related_name='sessions')
-#    youtube_videos = models.ForeignKey(URL, on_delete=models.CASCADE,
-#                                       related_name='YouTube videos')
+    youtube_videos = models.ForeignKey(URL, on_delete=models.CASCADE,
+                                       related_name='session')
     length = models.DurationField(default=timedelta(0))
     number = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-#   players_present = models.ManyToManyField(Player, blank)
+    players_present = models.ManyToManyField(Player, blank=True)
 
     def __str__(self):
         return "{}. {}".format(self.number, self.name)
@@ -102,7 +106,7 @@ class Session(BaseModel):
 
 class Place(BaseModel):
     name = models.CharField(max_length=400)
-#   campaigns = models.ManyToManyField(Campaign)
+    campaigns = models.ManyToManyField(Campaign)
     description = models.TextField(blank=True, null=True)
 
 
@@ -118,7 +122,8 @@ class Character(BaseModel):
                               default='images/no-img.jpg')
     pronouns = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-#   lives_in = models.ManyToManyField(Place, related_name='citizens')
+    lives_in = models.ManyToManyField(Place, blank=True,
+                                      related_name='citizens')
     in_campaign_since = models.ForeignKey(Session, on_delete=models.CASCADE,
                                           blank=True, null=True)
 

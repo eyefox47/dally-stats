@@ -37,13 +37,15 @@ class Player(BaseModel):
 
 class Campaign(BaseModel):
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='images/campaigns/',
-                              default='images/no-img.jpg')
     dm = models.ForeignKey(Player, on_delete=models.CASCADE,
                            related_name='campaigns_dming', verbose_name='DM')
-    description = models.TextField(blank=True, null=True)
     start_date = models.DateField(default=timezone.now,
                                   verbose_name='Start date')
+    image = models.ImageField(upload_to='images/campaigns/',
+                              default='images/no-img.jpg')
+    youtube_playlist = models.URLField(blank=True, null=True,
+                                       verbose_name='YouTube playlist')
+    description = models.TextField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True,
                                 verbose_name='End date')
 
@@ -80,11 +82,15 @@ class Campaign(BaseModel):
 
 class Session(BaseModel):
     name = models.CharField(max_length=200)
-    number = models.IntegerField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    date = models.DateField(default=timezone.now)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,
                                  related_name='sessions')
-    date = models.DateField(default=timezone.now)
+#    youtube_videos = models.ForeignKey(URL, on_delete=models.CASCADE,
+#                                       related_name='YouTube videos')
+    length = models.DurationField()
+    number = models.IntegerField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+#   players_present = models.ManyToManyField(Player, blank)
 
     def __str__(self):
         return "{}. {}".format(self.number, self.name)
@@ -93,20 +99,26 @@ class Session(BaseModel):
         ordering = ['name']
 
 
+class Place(BaseModel):
+    name = models.CharField(max_length=400)
+#   campaign =
+    description = models.TextField(blank=True, null=True)
+
+
 class Character(BaseModel):
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/characters/',
-                              default='images/no-img.jpg')
     player = models.ForeignKey(Player, on_delete=models.CASCADE,
                                related_name='characters')
-    pronouns = models.CharField(max_length=100, blank=True, null=True)
-    cclass = models.CharField(max_length=200, blank=True, null=True,
-                              verbose_name='Class')
-    description = models.TextField(blank=True, null=True)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,
                                  related_name='characters')
+    character_class = models.CharField(max_length=200, blank=True, null=True,
+                                       verbose_name='Class')
+    image = models.ImageField(upload_to='images/characters/',
+                              default='images/no-img.jpg')
+    pronouns = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+#   lives_in = models.ManyToManyField(Place, related_name='citizens')
     in_campaign_since = models.ForeignKey(Session, on_delete=models.CASCADE,
-
                                           blank=True, null=True)
 
     def pokemons(self):

@@ -16,7 +16,7 @@ class CharacterForm(forms.ModelForm):
     class Meta:
         model = Character
         fields = ('image', 'name', 'player', 'campaign', 'pronouns',
-                  'cclass', 'description')
+                  'character_class', 'description')
 
 
 class PetForm(forms.ModelForm):
@@ -24,7 +24,7 @@ class PetForm(forms.ModelForm):
     class Meta:
         model = Pet
         fields = ('image', 'name', 'player', 'trainer', 'campaign', 'pronouns',
-                  'cclass', 'description')
+                  'character_class', 'description')
 
 
 class NPCForm(forms.ModelForm):
@@ -32,4 +32,4 @@ class NPCForm(forms.ModelForm):
     class Meta:
         model = Character
         fields = ('image', 'name', 'campaign', 'pronouns',
-                  'cclass', 'description')
+                  'character_class', 'description')

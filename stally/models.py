@@ -3,6 +3,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.validators import validate_comma_separated_integer_list
+from datetime import timedelta
 
 
 class BaseModel(models.Model):
@@ -87,7 +88,7 @@ class Session(BaseModel):
                                  related_name='sessions')
 #    youtube_videos = models.ForeignKey(URL, on_delete=models.CASCADE,
 #                                       related_name='YouTube videos')
-    length = models.DurationField()
+    length = models.DurationField(default=timedelta(0))
     number = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 #   players_present = models.ManyToManyField(Player, blank)
@@ -101,7 +102,7 @@ class Session(BaseModel):
 
 class Place(BaseModel):
     name = models.CharField(max_length=400)
-#   campaign =
+#   campaigns = models.ManyToManyField(Campaign)
     description = models.TextField(blank=True, null=True)
 
 

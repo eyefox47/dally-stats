@@ -6,9 +6,9 @@
     {% endif %}
   </div>
   <div class="col-md-6 col-md-pull-2">
-      {% if character.cclass %}
+      {% if character.character_class %}
         <div class="class-text">
-          <p>{{ character.cclass }}</p>
+          <p>{{ character.character_class }}</p>
         </div>
       {% endif %}
       <p><b>Player:</b> <a href="{% url 'player_detail' pk=character.player.pk %}">

@@ -81,17 +81,11 @@ class Campaign(BaseModel):
         ordering = ['name']
 
 
-class URL(BaseModel):
-    link = models.URLField()
-
-
 class Session(BaseModel):
     name = models.CharField(max_length=200)
     date = models.DateField(default=timezone.now)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,
                                  related_name='sessions')
-    youtube_videos = models.ForeignKey(URL, on_delete=models.CASCADE,
-                                       related_name='session')
     length = models.DurationField(default=timedelta(0))
     number = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
@@ -102,6 +96,12 @@ class Session(BaseModel):
 
     class Meta:
         ordering = ['name']
+
+
+class URL(BaseModel):
+    link = models.URLField()
+    session = models.ForeignKey(Session, on_delete=models.CASCADE,
+                                related_name='youtube_videos')
 
 
 class Place(BaseModel):

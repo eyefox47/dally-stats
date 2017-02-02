@@ -38,7 +38,7 @@ class Player(BaseModel):
 
 class Campaign(BaseModel):
     name = models.CharField(max_length=200)
-    dm = models.ForeignKey(Player, on_delete=models.CASCADE,
+    dm = models.ForeignKey(Player, on_delete=models.PROTECT,
                            related_name='campaigns_dming', verbose_name='DM')
     start_date = models.DateField(default=timezone.now,
                                   verbose_name='Start date')
@@ -112,9 +112,9 @@ class Place(BaseModel):
 
 class Character(BaseModel):
     name = models.CharField(max_length=100)
-    player = models.ForeignKey(Player, on_delete=models.CASCADE,
+    player = models.ForeignKey(Player, on_delete=models.PROTECT,
                                related_name='characters')
-    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,
+    campaign = models.ForeignKey(Campaign, on_delete=models.PROTECT,
                                  related_name='characters')
     character_class = models.CharField(max_length=200, blank=True, null=True,
                                        verbose_name='Class')
@@ -124,7 +124,7 @@ class Character(BaseModel):
     description = models.TextField(blank=True, null=True)
     lives_in = models.ManyToManyField(Place, blank=True,
                                       related_name='citizens')
-    in_campaign_since = models.ForeignKey(Session, on_delete=models.CASCADE,
+    in_campaign_since = models.ForeignKey(Session, on_delete=models.SET_NULL,
                                           blank=True, null=True)
 
     def pokemons(self):
@@ -148,7 +148,7 @@ class Character(BaseModel):
 
 class Trainee(Character):
     trainer = models.ForeignKey(
-        Character, on_delete=models.CASCADE, related_name='trainees',
+        Character, on_delete=models.SET_NULL, related_name='trainees',
         blank=True, null=True)
 
 

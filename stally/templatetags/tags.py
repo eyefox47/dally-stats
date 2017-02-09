@@ -7,12 +7,12 @@ def active(request, pattern):
     import re
     if pattern == '/':
         if request.path == '/':
-            return 'active'
+            return 'active-header-tab'
         else:
             return ''
 
     if re.search(pattern, request.path):
-        return 'active'
+        return 'active-header-tab'
     return ''
 
 

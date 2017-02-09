@@ -14,16 +14,6 @@
           <a href="{% url 'player_detail' pk=player.pk %}">{{ player }}</a>
         {% endfor %}
       <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
-      <a href="{% url 'campaign_character_list' pk=campaign.pk %}"
-       class="characters-link link">Characters</a>
-      {% if campaign.pc_pokemon.all %}
-      <i>, </i><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}"
-                  class="pokemon-link link">Player Pokémon</a>
-      {% endif %}
-      {% if campaign.npcs.all or campaign.npc_pokemon.all %}
-      <i>, </i><a href="{% url 'campaign_npc_list' pk=campaign.pk %}"
-                  class="npc-link link">NPCs</a>
-      {% endif %}
     </div>
 
 </div>

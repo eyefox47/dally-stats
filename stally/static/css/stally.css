@@ -21,26 +21,26 @@ h1, h2 {
     text-decoration: none;
 }
 
-.navbar .navbar-nav .dropdown-menu li a:hover {
+.page-header .navbar .navbar-nav .dropdown-menu li a:hover {
 	background: #a86200;
 }
 
-.navbar .navbar-nav li a:hover {
+.page-header .navbar .navbar-nav li a:hover {
   background: #a86200;
 }
 
-.navbar .nav > li.dropdown.open.active > a:hover,
-.navbar .nav > li.dropdown.open > a,
-.navbar .nav > li:active {
+.page-header .navbar .nav > li.dropdown.open.active > a:hover,
+.page-header .navbar .nav > li.dropdown.open > a,
+.page-header .navbar .nav > li:active {
   background: #543100;
   color: #ffffff;
 }
 
-.navbar .navbar-toggle .icon-bar {
+.page-header .navbar .navbar-toggle .icon-bar {
   background-color: black;
 }
 
-.navbar {
+.page-header .navbar {
 	margin-bottom: 0;
 }
 
@@ -122,7 +122,7 @@ h1, h2 {
 }
 
 /* Misc */
-.active {
+.active-header-tab {
   background: #543100;
   color: #ffffff;
 }

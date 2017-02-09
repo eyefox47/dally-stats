@@ -6,76 +6,87 @@
 
 
 {% block content %}
-  <div class="page-title">
-    <h1>{{ campaign.name }}</h1>
-  </div>
-
-  {# Campagin description #}
-  <div class="content-box-small">
-    {% include 'stally/_campaign_attributes.html' %}
-  </div>
-
-  {# Character list #}
-  <div class="title-small">
-    <h1><a href="{% url 'campaign_character_list' pk=campaign.pk %}"
-           class="">Characters in {{ campaign.name }}</a></h1>
-  </div>
-
-  {% for character in campaign.characters_without_pokemon.all  %}
-
-    <div class="content-box-medium">
-      <h3><a href="{% url 'character_detail' pk=character.pk %}">
-        {{ character.name }}</a></h3>
-      {% include 'stally/_character_attributes.html' %}
-    </div>
-  {% endfor %}
-
-  {# Pokemon list (if present) #}
-  {% if campaign.pc_pokemon.all %}
     <div class="page-title">
-      <h1><a href="{% url 'campaign_pokemon_list' pk=campaign.pk %}"
-             class="">Pokémon in {{ campaign.name }}</a></h1>
+        <h1>{{ campaign.name }}</h1>
     </div>
 
-    {% for pokemon in campaign.pc_pokemon.all  %}
-      <div class="content-box-medium">
-        <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">
-            {{ pokemon.name }}</a></h3>
-        {% include 'stally/_pokemon_attributes.html' %}
-      </div>
-    {% endfor %}
-  {% endif %}
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#description">Description</a></li>
+        <li><a data-toggle="tab" href="#characters">Characters</a></li>
+        {% if campaign.pc_pokemon.all %}
+            <li><a data-toggle="tab" href="#pokemon">Pokémon</a></li>
+        {% endif %}
+        {% if campaign.npcs.all %}
+            <li><a data-toggle="tab" href="#npcs">NPCs</a></li>
+        {% endif %}
+        {% if campaign.npc_pokemon.all %}
+            <li><a data-toggle="tab" href="#npc-pokemon">NPC Pokémon</a></li>
+        {% endif %}
+    </ul>
 
-  {# NPC list (if present) #}
-  {% if campaign.npcs.all %}
-    <div class="page-title">
-      <h1><a href="{% url 'campaign_npc_list' pk=campaign.pk %}"
-          class="">NPCs in {{ campaign.name }}</a></h1>
+    <div class="tab-content">
+        <div id="description" class="tab-pane fade in active"> {# Campagin description #}
+
+            <div class="content-box-small">
+              {% include 'stally/_campaign_attributes.html' %}
+            </div>
+
+        </div>
+        <div id="characters" class="tab-pane fade"> {# Character list #}
+
+            {% for character in campaign.characters_without_pokemon.all  %}
+              <div class="content-box-medium">
+                <h3><a href="{% url 'character_detail' pk=character.pk %}">
+                  {{ character.name }}</a></h3>
+                {% include 'stally/_character_attributes.html' %}
+              </div>
+            {% endfor %}
+
+        </div>
+
+        {% if campaign.pc_pokemon.all %}
+            <div id="pokemon" class="tab-pane fade"> {# Pokemon list (if present) #}
+
+              {% for pokemon in campaign.pc_pokemon.all  %}
+                <div class="content-box-medium">
+                  <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">
+                      {{ pokemon.name }}</a></h3>
+                  {% include 'stally/_pokemon_attributes.html' %}
+                </div>
+              {% endfor %}
+
+          </div>
+        {% endif %}
+
+        {% if campaign.npcs.all %}
+            <div id="npcs" class="tab-pane fade"> {# NPC list (if present) #}
+
+              {% for character in campaign.npcs.all  %}
+                <div class="content-box-medium">
+                  <h3><a href="{% url 'character_detail' pk=character.pk %}">
+                    {{ character.name }}</a></h3>
+                  {% include 'stally/_character_attributes.html' %}
+                </div>
+              {% endfor %}
+
+          </div>
+        {% endif %}
+
+        {% if campaign.npc_pokemon.all %}
+            <div id="npc-pokemon" class="tab-pane fade"> {# NPC Pokemon (if present) #}
+
+                {% for pokemon in campaign.npc_pokemon.all  %}
+                    <div class="content-box-medium">
+                        <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">
+                               {{ pokemon.name }}</a></h3>
+                        {% include 'stally/_pokemon_attributes.html' %}
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% endif %}
     </div>
 
-    {% for character in campaign.npcs.all  %}
-      <div class="content-box-medium">
-        <h3><a href="{% url 'character_detail' pk=character.pk %}">
-          {{ character.name }}</a></h3>
-        {% include 'stally/_character_attributes.html' %}
-      </div>
-    {% endfor %}
-  {% endif %}
 
-  {# NPC Pokemon (if present) #}
-  {% if campaign.npc_pokemon.all %}
-    <div class="page-title">
-      <h1><a href="{% url 'campaign_npc_list' pk=campaign.pk %}"
-             class="">NPC Pokémon in {{ campaign.name }}</a></h1>
-    </div>
-
-    {% for pokemon in campaign.npc_pokemon.all  %}
-      <div class="content-box-medium">
-        <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">
-            {{ pokemon.name }}</a></h3>
-        {% include 'stally/_pokemon_attributes.html' %}
-      </div>
-    {% endfor %}
-  {% endif %}
 
 {% endblock %}

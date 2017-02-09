@@ -34,7 +34,7 @@
         </div>
         <div id="characters" class="tab-pane fade"> {# Character list #}
 
-            {% for character in campaign.characters_without_pokemon.all  %}
+            {% for character in campaign.characters_without_trainees.all  %}
               <div class="content-box-medium">
                 <h3><a href="{% url 'character_detail' pk=character.pk %}">
                   {{ character.name }}</a></h3>

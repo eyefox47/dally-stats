@@ -16,7 +16,7 @@ def campaign_list(request):
 
 def campaign_character_list(request, pk):
     campaign = get_object_or_404(Campaign, pk=pk)
-    characters = campaign.characters_without_pokemon().exclude(
+    characters = campaign.characters_without_trainees().exclude(
         pk__in=campaign.npcs())
     return render(request, 'stally/list_pages/campaign_character_list.html',
                   {'campaign': campaign, 'characters': characters})

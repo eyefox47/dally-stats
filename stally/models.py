@@ -21,10 +21,10 @@ class Player(BaseModel):
 
     def main_characters(self):
         characters = Character.objects.filter(player=self)
-        pokemons = Pokemon.objects.filter(player=self)
+        trainees = Trainee.objects.filter(player=self)
         campaigns = Campaign.objects.filter(dm=self)
         npcs = Character.objects.filter(campaign__in=campaigns)
-        return characters.exclude(pk__in=pokemons).exclude(pk__in=npcs)
+        return characters.exclude(pk__in=trainees).exclude(pk__in=npcs)
 
     def __str__(self):
         return self.name
@@ -55,12 +55,12 @@ class Campaign(BaseModel):
         return sorted(set(Player.objects.filter(
             characters__in=characters).exclude(name=self.dm.name)))
 
-    def characters_without_pokemon(self):
+    def characters_without_trainees(self):
         characters = Character.objects.filter(
             campaign=self).exclude(pk__in=self.npcs())
-        pokemon = Pokemon.objects.filter(campaign=self)
+        trainees = Trainee.objects.filter(campaign=self)
 
-        return characters.exclude(pk__in=pokemon)
+        return characters.exclude(pk__in=trainees)
 
     def pc_pokemon(self):
         return Pokemon.objects.filter(campaign=self).exclude(player=self.dm)

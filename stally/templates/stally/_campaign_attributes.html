@@ -2,11 +2,11 @@
   <p><b>Started on:</b> {{ campaign.start_date }}</p>
 </div>
 <div class="row">
-    <div class="col-md-4 col-md-push-6">
+    <div class="col-md-4 col-md-push-8">
         <img class="portrait img-fluid"
            src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
    </div>
-   <div class="col-md-6 col-md-pull-4">
+   <div class="col-md-8 col-md-pull-4">
       <p><b>DM:</b> <a href="{% url 'player_detail' pk=campaign.dm.pk %}">
           {{ campaign.dm }}</a></p>
       <p><b>Players:</b>

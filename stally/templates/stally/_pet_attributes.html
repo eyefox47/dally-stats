@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-md-2 col-md-push-6">
+  <div class="col-md-2 col-md-push-8">
     {% if not pet.image.url == "/media/images/no-img.jpg" %}
       <img class="portrait img-fluid" src="{{ pet.image.url }}"
          alt="{{ pet.name }} image">
     {% endif %}
   </div>
-  <div class="col-md-6 col-md-pull-2">
+  <div class="col-md-8 col-md-pull-2">
       {% if pet.character_class %}
         <div class="class-text">
           <p>{{ pet.character_class }}</p>

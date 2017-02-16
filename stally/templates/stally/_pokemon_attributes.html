@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="col-md-2 col-md-push-6">
+  <div class="col-md-2 col-md-push-8">
     {% if not pokemon.image.url == "/media/images/no-img.jpg" %}
       <img class="portrait img-fluid" src="{{ pokemon.image.url }}"
            alt="{{ pokemon.name }} image">
     {% endif %}
   </div>
 
-  <div class="col-md-6 col-md-pull-2">
+  <div class="col-md-8 col-md-pull-2">
     <div class="class-text">
       <p>{{ pokemon.kind }}</p>
     </div>

@@ -1,5 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, render_to_response, \
+     get_object_or_404, redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.template.context_processors import csrf
 from .models import Campaign, Character, Pokemon, Player, Pet
 from .forms import PokemonForm, CharacterForm, NPCForm, PetForm
 
@@ -189,3 +193,20 @@ def player_detail(request, pk):
 
 def about(request):
     return render(request, 'stally/about.html', {})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('registration_complete')
+
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': form})
+
+
+def registration_complete(request):
+    return render(request, 'registration/registration_complete.html')

@@ -37,5 +37,10 @@ urlpatterns = [
     url(r'^about/$', views.about, name='about'),
     url(r'^accounts/login/$', django_views.login, name='login'),
     url(r'^accounts/logout/$', django_views.logout,
-        name='logout', kwargs={'next_page': '/'}),
+        name='logout', kwargs={'next_page': '/campaigns'}),
+    # Registration URLs
+    url(r'^accounts/register/$', views.register, name='register'),
+    url(r'^accounts/register/complete/$',
+        views.registration_complete,
+        name='registration_complete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

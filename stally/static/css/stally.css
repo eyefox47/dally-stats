@@ -61,7 +61,7 @@ h1, h2 {
   font-size: 10pt;
 }
 
-.login {
+.login, .register {
     margin-top: 25px;
 }
 

@@ -70,7 +70,11 @@
                       </li>
                     {% else %}
                       <li><a href="{% url 'login' %}" class="top-menu">
-                          <span class="glyphicon glyphicon-lock glyphicon-small" aria-hidden="true"></span></a></li>
+                            <span class="glyphicon glyphicon-lock glyphicon-small" aria-hidden="true"></span></a>
+                          </li>
+                      <li><a href="{% url 'register' %}" class="top-menu">
+                            <span class="glyphicon glyphicon-plus glyphicon-small" aria-hidden="true"></span></a>
+                          </li>    
                     {% endif %}
                   </ul>
             </div>

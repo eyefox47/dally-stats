@@ -1,0 +1,20 @@
+{% extends "stally/base.html" %}
+
+
+{% block pagetitle %}
+    Register
+{% endblock %}
+
+{% block content %}
+{% if form.errors %}
+    <p>Invalid username and/or password. Please try again.</p>
+{% endif %}
+<div class="register">
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <input type="submit" value="Register" />
+    </form>
+</div>
+{% endblock %}

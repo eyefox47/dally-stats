@@ -1,11 +1,9 @@
-from django.shortcuts import render, render_to_response, \
+from django.shortcuts import render, \
      get_object_or_404, redirect
-from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.template.context_processors import csrf
 from .models import Campaign, Character, Pokemon, Player, Pet
-from .forms import PokemonForm, CharacterForm, NPCForm, PetForm
+from .forms import PokemonForm, CharacterForm, NPCForm, PetForm, \
+    MyRegistrationForm
 
 
 def start(request):
@@ -197,13 +195,13 @@ def about(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = MyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('registration_complete')
 
     else:
-        form = UserCreationForm()
+        form = MyRegistrationForm()
 
     return render(request, 'registration/register.html', {'form': form})
 

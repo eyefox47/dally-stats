@@ -25,7 +25,7 @@
     {% if pokemon.description %}
       <p><b>Description:</b> {{ pokemon.description|linebreaksbr }}</p>
     {% endif %}
-    {% if user.is_authenticated %}
+    {% if perms.stally.change_pokemon %}
       <a class="btn btn-default" href="{% url 'pokemon_edit' pk=pokemon.pk %}">
           <span class="glyphicon glyphicon-pencil"></span></a>
     {% endif %}

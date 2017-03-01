@@ -2,8 +2,12 @@
 
 {% block content %}
   <h1>Add/Edit Pet</h1>
-  <form method="POST" class="post-form">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Save</button>
-  </form>
+  {% if perms.stally.add_pet or perms.stally.change_pet %}
+    <form method="POST" class="post-form">{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+  {% else %}
+    You do not have permission to add/edit a pet.
+  {% endif %}
 {% endblock %}

@@ -27,7 +27,7 @@
       {% if pet.description %}
         <p><b>Description:</b> {{ pet.description|linebreaksbr }}</p>
       {% endif %}
-      {% if user.is_authenticated %}
+      {% if perms.stally.change_pet %}
         <a class="btn btn-default" href="{% url 'pet_edit' pk=pet.pk %}">
             <span class="glyphicon glyphicon-pencil"></span></a>
       {% endif %}

@@ -13,6 +13,23 @@
         {% for player in campaign.players %}
           <a href="{% url 'player_detail' pk=player.pk %}">{{ player }}</a>
         {% endfor %}
+      </p>
+      {% if campaign.genre %}
+        <p><b>Genre:</b> {{ campaign.genre }}</p>
+      {% endif %}
+      {% if campaign.system %}
+        <p><b>System:</b> {{ campaign.system }}</p>
+      {% endif %}
+      {% if campaign.schedule and campaign.schedule_rythm %}
+        <p><b>Schedule:</b> {{ campaign.get_schedule_rythm_display }}
+                            on {{ campaign.get_schedule_display }}.</p>
+      {% endif %}
+      {% if campaign.streaming_channel %}
+        <p><b>Streamed on:</b> {{ campaign.streaming_channel }}</p>
+      {% endif %}
+      {% if campaign.youtube_playlist %}
+        <p><b>Uploaded to:</b>  {{ campaign.youtube_playlist }}</p>
+      {% endif %}
       <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
       {% if perms.stally.change_campaign %}
         <a class="btn btn-default" href="{% url 'campaign_edit' pk=campaign.pk %}">

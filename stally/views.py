@@ -3,7 +3,7 @@ from django.shortcuts import render, \
 from django.contrib.auth.decorators import login_required
 from .models import Campaign, Character, Pokemon, Player, Pet
 from .forms import PokemonForm, CharacterForm, NPCForm, PetForm, \
-    MyRegistrationForm
+    CampaignForm, MyRegistrationForm
 
 
 def start(request):
@@ -149,6 +149,37 @@ def pokemon_edit(request, pk):
     else:
         form = PokemonForm(instance=pokemon)
     return render(request, 'stally/edit_pages/pokemon_edit.html',
+                  {'form': form})
+
+
+@login_required
+def campaign_new(request):
+    if request.method == "POST":
+        form = CampaignForm(request.POST)
+        if form.is_valid():
+            campaign = form.save(commit=False)
+
+            campaign.save()
+            return redirect('campaign_detail', pk=campaign.pk)
+    else:
+        form = CampaignForm()
+    return render(request, 'stally/edit_pages/campaign_edit.html',
+                  {'form': form})
+
+
+@login_required
+def campaign_edit(request, pk):
+    campaign = get_object_or_404(Campaign, pk=pk)
+    if request.method == "POST":
+        form = CampaignForm(request.POST, instance=campaign)
+        if form.is_valid():
+            campaign = form.save(commit=False)
+
+            campaign.save()
+            return redirect('campaign_detail', pk=campaign.pk)
+    else:
+        form = CampaignForm(instance=campaign)
+    return render(request, 'stally/edit_pages/campaign_edit.html',
                   {'form': form})
 
 

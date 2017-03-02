@@ -1,0 +1,13 @@
+{% extends 'stally/base.html' %}
+
+{% block content %}
+  <h1>Add/Edit campaign</h1>
+  {% if perms.stally.add_campaign or perms.stally.change_campaign %}
+    <form method="POST" class="post-form">{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+  {% else %}
+    You do not have permission to add/edit a campaign.
+  {% endif %}
+{% endblock %}

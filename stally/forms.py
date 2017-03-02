@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Pokemon, Character, Pet
+from .models import Pokemon, Character, Pet, Campaign
 
 
 class PokemonForm(forms.ModelForm):
@@ -11,6 +11,14 @@ class PokemonForm(forms.ModelForm):
         fields = ('image', 'name', 'player', 'campaign', 'pronouns',
                   'pokedex_nr', 'kind', 'type_p',
                   'trainer', 'nature', 'description')
+
+
+class CampaignForm(forms.ModelForm):
+
+    class Meta:
+        model = Campaign
+        fields = ('image', 'name', 'dm', 'start_date', 'youtube_playlist',
+                  'description', 'end_date')
 
 
 class CharacterForm(forms.ModelForm):

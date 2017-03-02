@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import validate_comma_separated_integer_list
 from datetime import timedelta
+from .myFields import DayOfTheWeekField
 
 
 class BaseModel(models.Model):
@@ -46,6 +47,18 @@ class Campaign(BaseModel):
                               default='images/no-img.jpg')
     youtube_playlist = models.URLField(blank=True, null=True,
                                        verbose_name='YouTube playlist')
+    streaming_channel = models.URLField(blank=True, null=True,
+                                        verbose_name='Streamed on')
+    schedule = DayOfTheWeekField(blank=True, null=True,
+                                 verbose_name='Is played on')
+    schedule_rythm = models.CharField(blank=True, null=True, max_length=1,
+                                      choices=(
+                                        ('1', 'weekly'),
+                                        ('2', 'biweekly'),
+                                        ('3', 'every three weeks'),
+                                      ))
+    genre = models.CharField(blank=True, null=True, max_length=100)
+    system = models.CharField(blank=True, null=True, max_length=200)
     description = models.TextField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True,
                                 verbose_name='End date')

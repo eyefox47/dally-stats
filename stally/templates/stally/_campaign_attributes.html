@@ -14,6 +14,10 @@
           <a href="{% url 'player_detail' pk=player.pk %}">{{ player }}</a>
         {% endfor %}
       <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
+      {% if perms.stally.change_campaign %}
+        <a class="btn btn-default" href="{% url 'campaign_edit' pk=campaign.pk %}">
+            <span class="glyphicon glyphicon-pencil"></span></a>
+      {% endif %}
     </div>
 
 </div>

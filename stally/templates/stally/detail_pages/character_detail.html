@@ -48,4 +48,20 @@
             </div>
         {% endif %}
     </div>
+
+    {% if character.name == "Clark" %}
+        <div id="pants" class="codepants">
+            <img src="/media/images/pants.png" alt="">
+        </div>
+    {% endif %}
+
+    <script type="text/javascript">
+    var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', '/media/audio/Code pants.mp3');
+
+        $('#pants').click(function() {
+            $('#pants').addClass('codepants-animated');
+            audioElement.play();
+        });
+    </script>
 {% endblock %}

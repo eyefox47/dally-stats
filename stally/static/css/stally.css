@@ -172,3 +172,49 @@ div#navigation h4 a , div#navigation h4 a:hover, div#navigation h4 a:visited{
     color: #ffffff;
     font-size: 26pt;
 }
+
+.codepants {
+    position: absolute;
+    right: 0;    
+}
+
+.codepants-animated {
+
+    -webkit-animation-name: spin;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 1500ms;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 1500ms;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 1500ms;
+    -ms-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 1500ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(180deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(180deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(180deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(180deg);
+    }
+}

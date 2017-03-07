@@ -56,10 +56,18 @@
                           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                               aria-expanded="false">New<span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                              <li><a href="{% url 'npc_new' %}" class="">Add NPC</a></li>
-                              <li><a href="{% url 'character_new' %}" class="">Add Character</a></li>
-                              <li><a href="{% url 'pokemon_new' %}" class="">Add Pokémon</a></li>
-                              <li><a href="{% url 'campaign_new' %}" class="">Add Campaign</a></li>
+                              {% if perms.stally.add_character %}
+                                <li><a href="{% url 'npc_new' %}" class="">Add NPC</a></li>
+                              {% endif %}
+                              {% if perms.stally.add_character %}
+                                <li><a href="{% url 'character_new' %}" class="">Add Character</a></li>
+                              {% endif %}
+                              {% if perms.stally.add_pokemon %}
+                                <li><a href="{% url 'pokemon_new' %}" class="">Add Pokémon</a></li>
+                              {% endif %}
+                              {% if perms.stally.add_campaign %}
+                                <li><a href="{% url 'campaign_new' %}" class="">Add Campaign</a></li>
+                              {% endif %}
                           </ul>
                       </li>
                       <li class="dropdown">

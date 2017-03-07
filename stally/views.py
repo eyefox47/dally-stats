@@ -1,6 +1,7 @@
 from django.shortcuts import render, \
      get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView
 from .models import Campaign, Character, Pokemon, Player, Pet
 from .forms import PokemonForm, CharacterForm, NPCForm, PetForm, \
     CampaignForm, MyRegistrationForm
@@ -82,6 +83,12 @@ def character_new(request):
         form = CharacterForm()
     return render(request, 'stally/edit_pages/character_edit.html',
                   {'form': form})
+
+
+@login_required
+class CharacterNew(CreateView):
+    form_class = CharacterForm
+    template_name = 'stally/edit_pages/character_edit.html'
 
 
 @login_required

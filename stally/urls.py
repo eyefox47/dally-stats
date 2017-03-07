@@ -3,6 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as django_views
 from . import views
+from stally.views import CharacterNew
 
 urlpatterns = [
     url(r'^$', views.start, name='start'),

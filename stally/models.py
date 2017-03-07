@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 from django.core.validators import validate_comma_separated_integer_list
 from datetime import timedelta
 from .myFields import DayOfTheWeekField
@@ -10,6 +11,10 @@ from .myFields import DayOfTheWeekField
 class BaseModel(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    # created_by = models.ForeignKey(User, on_delete=models.CASCADE,
+    #                                related_name='models_created')
+    # modified_by = models.ForeignKey(User, on_delete=models.CASCADE,
+    #                                 related_name='models_modified')
 
     class Meta:
         abstract = True

@@ -60,13 +60,16 @@
                                 <li><a href="{% url 'npc_new' %}" class="">Add NPC</a></li>
                               {% endif %}
                               {% if perms.stally.add_character %}
-                                <li><a href="{% url 'character_new' %}" class="">Add Character</a></li>
+                                <li><a href="{% url 'character_new' %}" class="">Add character</a></li>
                               {% endif %}
                               {% if perms.stally.add_pokemon %}
                                 <li><a href="{% url 'pokemon_new' %}" class="">Add Pokémon</a></li>
                               {% endif %}
+                              {% if perms.stally.add_pet %}
+                                <li><a href="{% url 'pet_new' %}" class="">Add pet</a></li>
+                              {% endif %}
                               {% if perms.stally.add_campaign %}
-                                <li><a href="{% url 'campaign_new' %}" class="">Add Campaign</a></li>
+                                <li><a href="{% url 'campaign_new' %}" class="">Add campaign</a></li>
                               {% endif %}
                           </ul>
                       </li>

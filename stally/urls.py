@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'^pets/(?P<pk>\d+)/$', views.pet_detail, name='pet_detail'),
     url(r'^pets/(?P<pk>\d+)/edit/$', views.pet_edit,
         name='pet_edit'),
+    url(r'^pets/new/$', views.pet_new,
+        name='pet_new'),
     url(r'^characters/new/$', views.character_new, name='character_new'),
     url(r'^characters/(?P<pk>\d+)/edit/$', views.character_edit,
         name='character_edit'),

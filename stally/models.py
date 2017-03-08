@@ -174,6 +174,9 @@ class Trainee(Character):
         Character, on_delete=models.SET_NULL, related_name='trainees',
         blank=True, null=True)
 
+    class Meta:
+        ordering = ['name']
+
 
 class Pokemon(Trainee):
     pokedex_nr = models.CharField(
@@ -196,7 +199,6 @@ class Pokemon(Trainee):
         return reverse('pokemon_detail', kwargs={'pk': self.pk})
 
     class Meta:
-        ordering = ['name']
         verbose_name = 'Pokémon'
         verbose_name_plural = 'Pokémon'
 

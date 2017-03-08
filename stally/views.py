@@ -3,7 +3,7 @@ from django.shortcuts import render, \
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from .models import Campaign, Character, Pokemon, Player, Pet
 from .forms import PokemonForm, CharacterForm, NPCForm, PetForm, \
     CampaignForm, MyRegistrationForm
@@ -72,8 +72,12 @@ def pet_detail(request, pk):
                   {'pet': pet})
 
 
+# Create and edit views
+
+
 @method_decorator(login_required, name='dispatch')
 class CharacterNew(CreateView):
+    model = Character
     form_class = CharacterForm
     template_name = 'stally/edit_pages/character_edit.html'
 
@@ -81,20 +85,14 @@ class CharacterNew(CreateView):
         return reverse('character_detail', args=(self.object.id,))
 
 
-@login_required
-def character_edit(request, pk):
-    character = get_object_or_404(Character, pk=pk)
-    if request.method == "POST":
-        form = CharacterForm(request.POST, instance=character)
-        if form.is_valid():
-            character = form.save(commit=False)
+@method_decorator(login_required, name='dispatch')
+class CharacterEdit(UpdateView):
+    model = Character
+    form_class = CharacterForm
+    template_name = 'stally/edit_pages/character_edit.html'
 
-            character.save()
-            return redirect('character_detail', pk=character.pk)
-    else:
-        form = CharacterForm(instance=character)
-    return render(request, 'stally/edit_pages/character_edit.html',
-                  {'form': form})
+    def get_success_url(self):
+        return reverse('character_detail', args=(self.object.id,))
 
 
 @login_required

@@ -1,5 +1,6 @@
 # This Python file uses the following encoding: utf-8
 
+from django.urls import reverse
 from django.db import models
 from django.utils import timezone
 from django.core.validators import validate_comma_separated_integer_list
@@ -32,6 +33,9 @@ class Player(BaseModel):
 
     def __lt__(self, other):
         return self.name < other.name
+
+    def get_absolute_url(self):
+        return reverse('player_detail', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ['name']
@@ -89,6 +93,9 @@ class Campaign(BaseModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('campaign_detail', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ['name']
@@ -155,6 +162,9 @@ class Character(BaseModel):
         else:
             return '{} (played by {})'.format(self.name, self.player.name)
 
+    def get_absolute_url(self):
+        return reverse('character_detail', kwargs={'pk': self.pk})
+
     class Meta:
         ordering = ['name']
 
@@ -182,6 +192,9 @@ class Pokemon(Trainee):
                               type_p=type_p, nature=nature, kind=kind)
         new_pokemon.save()
 
+    def get_absolute_url(self):
+        return reverse('pokemon_detail', kwargs={'pk': self.pk})
+
     class Meta:
         ordering = ['name']
         verbose_name = 'Pokémon'
@@ -189,4 +202,5 @@ class Pokemon(Trainee):
 
 
 class Pet(Trainee):
-    pass
+        def get_absolute_url(self):
+            return reverse('pet_detail', kwargs={'pk': self.pk})

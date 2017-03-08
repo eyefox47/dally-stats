@@ -81,18 +81,12 @@ class CharacterNew(CreateView):
     form_class = CharacterForm
     template_name = 'stally/edit_pages/character_edit.html'
 
-    def get_success_url(self):
-        return reverse('character_detail', args=(self.object.id,))
-
 
 @method_decorator(login_required, name='dispatch')
 class CharacterEdit(UpdateView):
     model = Character
     form_class = CharacterForm
     template_name = 'stally/edit_pages/character_edit.html'
-
-    def get_success_url(self):
-        return reverse('character_detail', args=(self.object.id,))
 
 
 @login_required

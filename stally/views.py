@@ -1,6 +1,9 @@
 from django.shortcuts import render, \
      get_object_or_404, redirect
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView
 from .models import Campaign, Character, Pokemon, Player, Pet
 from .forms import PokemonForm, CharacterForm, NPCForm, PetForm, \
     CampaignForm, MyRegistrationForm
@@ -69,19 +72,13 @@ def pet_detail(request, pk):
                   {'pet': pet})
 
 
-@login_required
-def character_new(request):
-    if request.method == "POST":
-        form = CharacterForm(request.POST)
-        if form.is_valid():
-            character = form.save(commit=False)
+@method_decorator(login_required, name='dispatch')
+class CharacterNew(CreateView):
+    form_class = CharacterForm
+    template_name = 'stally/edit_pages/character_edit.html'
 
-            character.save()
-            return redirect('character_detail', pk=character.pk)
-    else:
-        form = CharacterForm()
-    return render(request, 'stally/edit_pages/character_edit.html',
-                  {'form': form})
+    def get_success_url(self):
+        return reverse('character_detail', args=(self.object.id,))
 
 
 @login_required

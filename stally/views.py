@@ -1,6 +1,5 @@
 from django.shortcuts import render, \
      get_object_or_404, redirect
-from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
@@ -72,6 +71,12 @@ def pet_detail(request, pk):
                   {'pet': pet})
 
 
+def pokemon_detail(request, pk):
+    pokemon = get_object_or_404(Pokemon, pk=pk)
+    return render(request, 'stally/detail_pages/pokemon_detail.html',
+                  {'pokemon': pokemon})
+
+
 # Create and edit views
 
 
@@ -102,12 +107,6 @@ def npc_new(request):
         form = NPCForm()
     return render(request, 'stally/edit_pages/npc_edit.html',
                   {'form': form})
-
-
-def pokemon_detail(request, pk):
-    pokemon = get_object_or_404(Pokemon, pk=pk)
-    return render(request, 'stally/detail_pages/pokemon_detail.html',
-                  {'pokemon': pokemon})
 
 
 @login_required

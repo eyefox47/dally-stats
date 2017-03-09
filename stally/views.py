@@ -8,8 +8,7 @@ from .forms import PokemonForm, CharacterForm, NPCForm, PetForm, \
     CampaignForm, MyRegistrationForm
 
 
-def start(request):
-    return render(request, 'stally/start.html', {})
+# List views
 
 
 def campaign_list(request):
@@ -53,6 +52,9 @@ def campaign_npc_list(request, pk):
                   {'campaign': campaign})
 
 
+# Detail views
+
+
 def campaign_detail(request, pk):
     campaign = get_object_or_404(Campaign, pk=pk)
     return render(request, 'stally/detail_pages/campaign_detail.html',
@@ -75,6 +77,12 @@ def pokemon_detail(request, pk):
     pokemon = get_object_or_404(Pokemon, pk=pk)
     return render(request, 'stally/detail_pages/pokemon_detail.html',
                   {'pokemon': pokemon})
+
+
+def player_detail(request, pk):
+    player = get_object_or_404(Player, pk=pk)
+    return render(request, 'stally/detail_pages/player_detail.html',
+                  {'player': player})
 
 
 # Create and edit views
@@ -168,16 +176,7 @@ class PetEdit(UpdateView):
     template_name = 'stally/edit_pages/pet_edit.html'
 
 
-def player_detail(request, pk):
-    player = get_object_or_404(Player, pk=pk)
-    return render(request, 'stally/detail_pages/player_detail.html',
-                  {'player': player})
-
-
-def about(request):
-    return render(request, 'stally/about.html', {})
-
-
+# Registration
 def register(request):
     if request.method == 'POST':
         form = MyRegistrationForm(request.POST)
@@ -189,6 +188,16 @@ def register(request):
         form = MyRegistrationForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+
+# Static views
+
+def start(request):
+    return render(request, 'stally/start.html', {})
+
+
+def about(request):
+    return render(request, 'stally/about.html', {})
 
 
 def registration_complete(request):

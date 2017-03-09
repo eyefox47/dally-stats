@@ -109,7 +109,7 @@ class CharacterEdit(UpdateView):
 
     def form_valid(self, form):
         form.instance.modified_by = self.request.user
-        return super(CharacterNew, self).form_valid(form)
+        return super(CharacterEdit, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -124,7 +124,7 @@ class NPCNew(CreateView):
         character = form.save(commit=False)
         character.player = character.campaign.dm
         character.save()
-        return super(CreateView, self).form_valid(form)
+        return super(NPCNew, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -136,7 +136,7 @@ class PokemonNew(CreateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         form.instance.modified_by = self.request.user
-        return super(CharacterNew, self).form_valid(form)
+        return super(PokemonNew, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -147,7 +147,7 @@ class PokemonEdit(UpdateView):
 
     def form_valid(self, form):
         form.instance.modified_by = self.request.user
-        return super(CharacterNew, self).form_valid(form)
+        return super(PokemonEdit, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -159,7 +159,7 @@ class CampaignNew(CreateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         form.instance.modified_by = self.request.user
-        return super(CharacterNew, self).form_valid(form)
+        return super(CampaignNew, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -170,7 +170,7 @@ class CampaignEdit(UpdateView):
 
     def form_valid(self, form):
         form.instance.modified_by = self.request.user
-        return super(CharacterNew, self).form_valid(form)
+        return super(CampaignEdit, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -182,7 +182,7 @@ class PetNew(CreateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         form.instance.modified_by = self.request.user
-        return super(CharacterNew, self).form_valid(form)
+        return super(PetNew, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -193,7 +193,7 @@ class PetEdit(UpdateView):
 
     def form_valid(self, form):
         form.instance.modified_by = self.request.user
-        return super(CharacterNew, self).form_valid(form)
+        return super(PetEdit, self).form_valid(form)
 
 
 class Register(CreateView):

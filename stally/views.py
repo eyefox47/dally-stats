@@ -102,19 +102,17 @@ class CharacterEdit(UpdateView):
     template_name = 'stally/edit_pages/character_edit.html'
 
 
-@login_required
-def npc_new(request):
-    if request.method == "POST":
-        form = NPCForm(request.POST)
-        if form.is_valid():
-            character = form.save(commit=False)
-            character.player = character.campaign.dm
-            character.save()
-            return redirect('character_detail', pk=character.pk)
-    else:
-        form = NPCForm()
-    return render(request, 'stally/edit_pages/npc_edit.html',
-                  {'form': form})
+@method_decorator(login_required, name='dispatch')
+class NPCNew(CreateView):
+    model = Character
+    form_class = NPCForm
+    template_name = 'stally/edit_pages/npc_edit.html'
+
+    def form_valid(self, form):
+        character = form.save(commit=False)
+        character.player = character.campaign.dm
+        character.save()
+        return super(CreateView, self).form_valid(form)
 
 
 @login_required

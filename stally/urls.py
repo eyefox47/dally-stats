@@ -26,7 +26,7 @@ urlpatterns = [
         name='character_new'),
     url(r'^characters/(?P<pk>\d+)/edit/$', views.CharacterEdit.as_view(),
         name='character_edit'),
-    url(r'^npc/new/$', views.npc_new, name='npc_new'),
+    url(r'^npc/new/$', views.NPCNew.as_view(), name='npc_new'),
     url(r'^campaigns/(?P<pk>\d+)/pokemon/$', views.campaign_pokemon_list,
         name='campaign_pokemon_list'),
     url(r'^campaigns/(?P<pk>\d+)/npcs/$', views.campaign_npc_list,

@@ -12,10 +12,11 @@ from .myFields import DayOfTheWeekField
 class BaseModel(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    # created_by = models.ForeignKey(User, on_delete=models.CASCADE,
-    #                                related_name='models_created')
-    # modified_by = models.ForeignKey(User, on_delete=models.CASCADE,
-    #                                 related_name='models_modified')
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE,
+                                   related_name='%(class)s_created', default=1)
+    modified_by = models.ForeignKey(User, on_delete=models.CASCADE,
+                                    related_name='%(class)s_modified',
+                                    default=1)
 
     class Meta:
         abstract = True

@@ -95,12 +95,21 @@ class CharacterNew(CreateView):
     form_class = CharacterForm
     template_name = 'stally/edit_pages/character_edit.html'
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.modified_by = self.request.user
+        return super(CharacterNew, self).form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class CharacterEdit(UpdateView):
     model = Character
     form_class = CharacterForm
     template_name = 'stally/edit_pages/character_edit.html'
+
+    def form_valid(self, form):
+        form.instance.modified_by = self.request.user
+        return super(CharacterNew, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -110,6 +119,8 @@ class NPCNew(CreateView):
     template_name = 'stally/edit_pages/npc_edit.html'
 
     def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.modified_by = self.request.user
         character = form.save(commit=False)
         character.player = character.campaign.dm
         character.save()
@@ -122,12 +133,21 @@ class PokemonNew(CreateView):
     form_class = PokemonForm
     template_name = 'stally/edit_pages/pokemon_edit.html'
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.modified_by = self.request.user
+        return super(CharacterNew, self).form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class PokemonEdit(UpdateView):
     model = Pokemon
     form_class = PokemonForm
     template_name = 'stally/edit_pages/pokemon_edit.html'
+
+    def form_valid(self, form):
+        form.instance.modified_by = self.request.user
+        return super(CharacterNew, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -136,12 +156,21 @@ class CampaignNew(CreateView):
     form_class = CampaignForm
     template_name = 'stally/edit_pages/campaign_edit.html'
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.modified_by = self.request.user
+        return super(CharacterNew, self).form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class CampaignEdit(UpdateView):
     model = Campaign
     form_class = CampaignForm
     template_name = 'stally/edit_pages/campaign_edit.html'
+
+    def form_valid(self, form):
+        form.instance.modified_by = self.request.user
+        return super(CharacterNew, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -150,12 +179,21 @@ class PetNew(CreateView):
     form_class = PetForm
     template_name = 'stally/edit_pages/pet_edit.html'
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.modified_by = self.request.user
+        return super(CharacterNew, self).form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class PetEdit(UpdateView):
     model = Pet
     form_class = PetForm
     template_name = 'stally/edit_pages/pet_edit.html'
+
+    def form_valid(self, form):
+        form.instance.modified_by = self.request.user
+        return super(CharacterNew, self).form_valid(form)
 
 
 class Register(CreateView):

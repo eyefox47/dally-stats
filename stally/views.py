@@ -147,20 +147,11 @@ class CampaignNew(CreateView):
     template_name = 'stally/edit_pages/campaign_edit.html'
 
 
-@login_required
-def campaign_edit(request, pk):
-    campaign = get_object_or_404(Campaign, pk=pk)
-    if request.method == "POST":
-        form = CampaignForm(request.POST, instance=campaign)
-        if form.is_valid():
-            campaign = form.save(commit=False)
-
-            campaign.save()
-            return redirect('campaign_detail', pk=campaign.pk)
-    else:
-        form = CampaignForm(instance=campaign)
-    return render(request, 'stally/edit_pages/campaign_edit.html',
-                  {'form': form})
+@method_decorator(login_required, name='dispatch')
+class CampaignEdit(UpdateView):
+    model = Campaign
+    form_class = CampaignForm
+    template_name = 'stally/edit_pages/campaign_edit.html'
 
 
 @login_required

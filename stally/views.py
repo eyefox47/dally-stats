@@ -140,19 +140,11 @@ def pokemon_edit(request, pk):
                   {'form': form})
 
 
-@login_required
-def campaign_new(request):
-    if request.method == "POST":
-        form = CampaignForm(request.POST)
-        if form.is_valid():
-            campaign = form.save(commit=False)
-
-            campaign.save()
-            return redirect('campaign_detail', pk=campaign.pk)
-    else:
-        form = CampaignForm()
-    return render(request, 'stally/edit_pages/campaign_edit.html',
-                  {'form': form})
+@method_decorator(login_required, name='dispatch')
+class CampaignNew(CreateView):
+    model = Campaign
+    form_class = CampaignForm
+    template_name = 'stally/edit_pages/campaign_edit.html'
 
 
 @login_required

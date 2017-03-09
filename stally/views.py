@@ -154,35 +154,18 @@ class CampaignEdit(UpdateView):
     template_name = 'stally/edit_pages/campaign_edit.html'
 
 
-@login_required
-def pet_new(request):
-    if request.method == "POST":
-        form = PetForm(request.POST)
-        if form.is_valid():
-            pet = form.save(commit=False)
-
-            pet.save()
-            return redirect('pet_detail', pk=pet.pk)
-    else:
-        form = PetForm()
-    return render(request, 'stally/edit_pages/pet_edit.html',
-                  {'form': form})
+@method_decorator(login_required, name='dispatch')
+class PetNew(CreateView):
+    model = Pet
+    form_class = PetForm
+    template_name = 'stally/edit_pages/pet_edit.html'
 
 
-@login_required
-def pet_edit(request, pk):
-    pet = get_object_or_404(Pet, pk=pk)
-    if request.method == "POST":
-        form = CharacterForm(request.POST, instance=pet)
-        if form.is_valid():
-            pet = form.save(commit=False)
-
-            pet.save()
-            return redirect('pet_detail', pk=pet.pk)
-    else:
-        form = PetForm(instance=pet)
-    return render(request, 'stally/edit_pages/pet_edit.html',
-                  {'form': form})
+@method_decorator(login_required, name='dispatch')
+class PetEdit(UpdateView):
+    model = Pet
+    form_class = PetForm
+    template_name = 'stally/edit_pages/pet_edit.html'
 
 
 def player_detail(request, pk):

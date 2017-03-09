@@ -1,6 +1,7 @@
 from django.shortcuts import render, \
-     get_object_or_404, redirect
+     get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 from .models import Campaign, Character, Pokemon, Player, Pet
@@ -157,18 +158,10 @@ class PetEdit(UpdateView):
     template_name = 'stally/edit_pages/pet_edit.html'
 
 
-# Registration
-def register(request):
-    if request.method == 'POST':
-        form = MyRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('registration_complete')
-
-    else:
-        form = MyRegistrationForm()
-
-    return render(request, 'registration/register.html', {'form': form})
+class Register(CreateView):
+    form_class = MyRegistrationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('registration_complete')
 
 
 # Static views

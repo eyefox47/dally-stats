@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', django_views.logout,
         name='logout', kwargs={'next_page': '/campaigns'}),
     # Registration URLs
-    url(r'^accounts/register/$', views.register, name='register'),
+    url(r'^accounts/register/$', views.Register.as_view(), name='register'),
     url(r'^accounts/register/complete/$',
         views.registration_complete,
         name='registration_complete'),

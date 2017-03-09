@@ -33,7 +33,7 @@ urlpatterns = [
         name='campaign_npc_list'),
     url(r'^pokemon/(?P<pk>\d+)/$', views.pokemon_detail,
         name='pokemon_detail'),
-    url(r'^pokemon/new/$', views.pokemon_new, name='pokemon_new'),
+    url(r'^pokemon/new/$', views.PokemonNew.as_view(), name='pokemon_new'),
     url(r'^pokemon/(?P<pk>\d+)/edit/$', views.pokemon_edit,
         name='pokemon_edit'),
     url(r'^campaigns/new/$', views.CampaignNew.as_view(), name='campaign_new'),

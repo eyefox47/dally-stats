@@ -115,19 +115,11 @@ class NPCNew(CreateView):
         return super(CreateView, self).form_valid(form)
 
 
-@login_required
-def pokemon_new(request):
-    if request.method == "POST":
-        form = PokemonForm(request.POST)
-        if form.is_valid():
-            pokemon = form.save(commit=False)
-
-            pokemon.save()
-            return redirect('pokemon_detail', pk=pokemon.pk)
-    else:
-        form = PokemonForm()
-    return render(request, 'stally/edit_pages/pokemon_edit.html',
-                  {'form': form})
+@method_decorator(login_required, name='dispatch')
+class PokemonNew(CreateView):
+    model = Pokemon
+    form_class = PokemonForm
+    template_name = 'stally/edit_pages/pokemon_edit.html'
 
 
 @login_required

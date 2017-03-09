@@ -1,14 +1,15 @@
 from django.shortcuts import render, \
-     get_object_or_404, redirect
+     get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, UpdateView
 from .models import Campaign, Character, Pokemon, Player, Pet
 from .forms import PokemonForm, CharacterForm, NPCForm, PetForm, \
     CampaignForm, MyRegistrationForm
 
 
-def start(request):
-    return render(request, 'stally/start.html', {})
+# List views
 
 
 def campaign_list(request):
@@ -52,6 +53,9 @@ def campaign_npc_list(request, pk):
                   {'campaign': campaign})
 
 
+# Detail views
+
+
 def campaign_detail(request, pk):
     campaign = get_object_or_404(Campaign, pk=pk)
     return render(request, 'stally/detail_pages/campaign_detail.html',
@@ -70,155 +74,10 @@ def pet_detail(request, pk):
                   {'pet': pet})
 
 
-@login_required
-def character_new(request):
-    if request.method == "POST":
-        form = CharacterForm(request.POST)
-        if form.is_valid():
-            character = form.save(commit=False)
-
-            character.save()
-            return redirect('character_detail', pk=character.pk)
-    else:
-        form = CharacterForm()
-    return render(request, 'stally/edit_pages/character_edit.html',
-                  {'form': form})
-
-
-@login_required
-class CharacterNew(CreateView):
-    form_class = CharacterForm
-    template_name = 'stally/edit_pages/character_edit.html'
-
-
-@login_required
-def character_edit(request, pk):
-    character = get_object_or_404(Character, pk=pk)
-    if request.method == "POST":
-        form = CharacterForm(request.POST, instance=character)
-        if form.is_valid():
-            character = form.save(commit=False)
-
-            character.save()
-            return redirect('character_detail', pk=character.pk)
-    else:
-        form = CharacterForm(instance=character)
-    return render(request, 'stally/edit_pages/character_edit.html',
-                  {'form': form})
-
-
-@login_required
-def npc_new(request):
-    if request.method == "POST":
-        form = NPCForm(request.POST)
-        if form.is_valid():
-            character = form.save(commit=False)
-            character.player = character.campaign.dm
-            character.save()
-            return redirect('character_detail', pk=character.pk)
-    else:
-        form = NPCForm()
-    return render(request, 'stally/edit_pages/npc_edit.html',
-                  {'form': form})
-
-
 def pokemon_detail(request, pk):
     pokemon = get_object_or_404(Pokemon, pk=pk)
     return render(request, 'stally/detail_pages/pokemon_detail.html',
                   {'pokemon': pokemon})
-
-
-@login_required
-def pokemon_new(request):
-    if request.method == "POST":
-        form = PokemonForm(request.POST)
-        if form.is_valid():
-            pokemon = form.save(commit=False)
-
-            pokemon.save()
-            return redirect('pokemon_detail', pk=pokemon.pk)
-    else:
-        form = PokemonForm()
-    return render(request, 'stally/edit_pages/pokemon_edit.html',
-                  {'form': form})
-
-
-@login_required
-def pokemon_edit(request, pk):
-    pokemon = get_object_or_404(Pokemon, pk=pk)
-    if request.method == "POST":
-        form = PokemonForm(request.POST, instance=pokemon)
-        if form.is_valid():
-            pokemon = form.save(commit=False)
-
-            pokemon.save()
-            return redirect('pokemon_detail', pk=pokemon.pk)
-    else:
-        form = PokemonForm(instance=pokemon)
-    return render(request, 'stally/edit_pages/pokemon_edit.html',
-                  {'form': form})
-
-
-@login_required
-def campaign_new(request):
-    if request.method == "POST":
-        form = CampaignForm(request.POST)
-        if form.is_valid():
-            campaign = form.save(commit=False)
-
-            campaign.save()
-            return redirect('campaign_detail', pk=campaign.pk)
-    else:
-        form = CampaignForm()
-    return render(request, 'stally/edit_pages/campaign_edit.html',
-                  {'form': form})
-
-
-@login_required
-def campaign_edit(request, pk):
-    campaign = get_object_or_404(Campaign, pk=pk)
-    if request.method == "POST":
-        form = CampaignForm(request.POST, instance=campaign)
-        if form.is_valid():
-            campaign = form.save(commit=False)
-
-            campaign.save()
-            return redirect('campaign_detail', pk=campaign.pk)
-    else:
-        form = CampaignForm(instance=campaign)
-    return render(request, 'stally/edit_pages/campaign_edit.html',
-                  {'form': form})
-
-
-@login_required
-def pet_new(request):
-    if request.method == "POST":
-        form = PetForm(request.POST)
-        if form.is_valid():
-            pet = form.save(commit=False)
-
-            pet.save()
-            return redirect('pet_detail', pk=pet.pk)
-    else:
-        form = PetForm()
-    return render(request, 'stally/edit_pages/pet_edit.html',
-                  {'form': form})
-
-
-@login_required
-def pet_edit(request, pk):
-    pet = get_object_or_404(Pet, pk=pk)
-    if request.method == "POST":
-        form = CharacterForm(request.POST, instance=pet)
-        if form.is_valid():
-            pet = form.save(commit=False)
-
-            pet.save()
-            return redirect('pet_detail', pk=pet.pk)
-    else:
-        form = PetForm(instance=pet)
-    return render(request, 'stally/edit_pages/pet_edit.html',
-                  {'form': form})
 
 
 def player_detail(request, pk):
@@ -227,21 +86,92 @@ def player_detail(request, pk):
                   {'player': player})
 
 
+# Create and edit views
+
+
+@method_decorator(login_required, name='dispatch')
+class CharacterNew(CreateView):
+    model = Character
+    form_class = CharacterForm
+    template_name = 'stally/edit_pages/character_edit.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class CharacterEdit(UpdateView):
+    model = Character
+    form_class = CharacterForm
+    template_name = 'stally/edit_pages/character_edit.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class NPCNew(CreateView):
+    model = Character
+    form_class = NPCForm
+    template_name = 'stally/edit_pages/npc_edit.html'
+
+    def form_valid(self, form):
+        character = form.save(commit=False)
+        character.player = character.campaign.dm
+        character.save()
+        return super(CreateView, self).form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class PokemonNew(CreateView):
+    model = Pokemon
+    form_class = PokemonForm
+    template_name = 'stally/edit_pages/pokemon_edit.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class PokemonEdit(UpdateView):
+    model = Pokemon
+    form_class = PokemonForm
+    template_name = 'stally/edit_pages/pokemon_edit.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class CampaignNew(CreateView):
+    model = Campaign
+    form_class = CampaignForm
+    template_name = 'stally/edit_pages/campaign_edit.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class CampaignEdit(UpdateView):
+    model = Campaign
+    form_class = CampaignForm
+    template_name = 'stally/edit_pages/campaign_edit.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class PetNew(CreateView):
+    model = Pet
+    form_class = PetForm
+    template_name = 'stally/edit_pages/pet_edit.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class PetEdit(UpdateView):
+    model = Pet
+    form_class = PetForm
+    template_name = 'stally/edit_pages/pet_edit.html'
+
+
+class Register(CreateView):
+    form_class = MyRegistrationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('registration_complete')
+
+
+# Static views
+
+def start(request):
+    return render(request, 'stally/start.html', {})
+
+
 def about(request):
     return render(request, 'stally/about.html', {})
-
-
-def register(request):
-    if request.method == 'POST':
-        form = MyRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('registration_complete')
-
-    else:
-        form = MyRegistrationForm()
-
-    return render(request, 'registration/register.html', {'form': form})
 
 
 def registration_complete(request):

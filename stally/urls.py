@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^pokemon/(?P<pk>\d+)/$', views.pokemon_detail,
         name='pokemon_detail'),
     url(r'^pokemon/new/$', views.PokemonNew.as_view(), name='pokemon_new'),
-    url(r'^pokemon/(?P<pk>\d+)/edit/$', views.pokemon_edit,
+    url(r'^pokemon/(?P<pk>\d+)/edit/$', views.PokemonEdit.as_view(),
         name='pokemon_edit'),
     url(r'^campaigns/new/$', views.CampaignNew.as_view(), name='campaign_new'),
     url(r'^campaigns/(?P<pk>\d+)/edit/$', views.CampaignEdit.as_view(),

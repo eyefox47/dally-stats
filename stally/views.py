@@ -122,20 +122,11 @@ class PokemonNew(CreateView):
     template_name = 'stally/edit_pages/pokemon_edit.html'
 
 
-@login_required
-def pokemon_edit(request, pk):
-    pokemon = get_object_or_404(Pokemon, pk=pk)
-    if request.method == "POST":
-        form = PokemonForm(request.POST, instance=pokemon)
-        if form.is_valid():
-            pokemon = form.save(commit=False)
-
-            pokemon.save()
-            return redirect('pokemon_detail', pk=pokemon.pk)
-    else:
-        form = PokemonForm(instance=pokemon)
-    return render(request, 'stally/edit_pages/pokemon_edit.html',
-                  {'form': form})
+@method_decorator(login_required, name='dispatch')
+class PokemonEdit(UpdateView):
+    model = Pokemon
+    form_class = PokemonForm
+    template_name = 'stally/edit_pages/pokemon_edit.html'
 
 
 @method_decorator(login_required, name='dispatch')

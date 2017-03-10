@@ -13,10 +13,11 @@ class BaseModel(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE,
-                                   related_name='%(class)s_created', default=1)
+                                   related_name='%(class)s_created',
+                                   null=True, default=None)
     modified_by = models.ForeignKey(User, on_delete=models.CASCADE,
                                     related_name='%(class)s_modified',
-                                    default=1)
+                                    null=True, default=None)
 
     class Meta:
         abstract = True

@@ -62,6 +62,7 @@ class Campaign(BaseModel):
                                         verbose_name='Streamed on')
     schedule = DayOfTheWeekField(blank=True, null=True,
                                  verbose_name='Is played on')
+    schedule_time = models.TimeField(blank=True, null=True, verbose_name='At')
     schedule_rythm = models.CharField(blank=True, null=True, max_length=1,
                                       choices=(
                                         ('1', 'weekly'),

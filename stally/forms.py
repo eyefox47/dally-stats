@@ -18,8 +18,9 @@ class CampaignForm(forms.ModelForm):
     class Meta:
         model = Campaign
         fields = ('image', 'name', 'dm', 'start_date', 'youtube_playlist',
-                  'streaming_channel', 'schedule', 'schedule_rythm', 'genre',
-                  'system', 'description', 'end_date')
+                  'streaming_channel', 'schedule', 'schedule_time',
+                  'schedule_rythm', 'genre', 'system', 'description',
+                  'end_date')
 
 
 class CharacterForm(forms.ModelForm):

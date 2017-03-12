@@ -20,9 +20,9 @@
       {% if campaign.system %}
         <p><b>System:</b> {{ campaign.system }}</p>
       {% endif %}
-      {% if campaign.schedule and campaign.schedule_rythm %}
+      {% if campaign.schedule and campaign.schedule_rythm and campaign.schedule_time%}
         <p><b>Schedule:</b> {{ campaign.get_schedule_rythm_display }}
-                            on {{ campaign.get_schedule_display }}.</p>
+                            on {{ campaign.get_schedule_display }} at {{ campaign.schedule_time }}.</p>
       {% endif %}
       {% if campaign.streaming_channel %}
         <p><b>Streamed on:</b> <a target="_blank"

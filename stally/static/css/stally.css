@@ -65,6 +65,10 @@ h1, h2 {
     margin-top: 25px;
 }
 
+.contributor-guidelines {
+  font-size: 14pt;
+}
+
 /* Content */
 .class-text {
   color: #828282;
@@ -175,7 +179,7 @@ div#navigation h4 a , div#navigation h4 a:hover, div#navigation h4 a:visited{
 
 .codepants {
     position: absolute;
-    right: 0;    
+    right: 0;
 }
 
 .codepants-animated {

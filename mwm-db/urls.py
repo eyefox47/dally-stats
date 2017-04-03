@@ -15,9 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.flatpages import views
 
 urlpatterns = [
     # url(r'^admin/', include('smuggler.urls')),
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'', include('stally.urls')),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
+
+    # Flatpages
+    url(r'^contributor-guidelines-1/$', views.flatpage,
+        {'url': '/contributor-guidelines-1/'}, name='guidelines-1'),
+    url(r'^contributor-guidelines-2/$', views.flatpage,
+        {'url': '/contributor-guidelines-2/'}, name='guidelines-2'),
+    url(r'^contributor-guidelines-3/$', views.flatpage,
+        {'url': '/contributor-guidelines-3/'}, name='guidelines-3'),
 ]

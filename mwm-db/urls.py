@@ -30,4 +30,6 @@ urlpatterns = [
         {'url': '/contributor-guidelines-2/'}, name='guidelines-2'),
     url(r'^contributor-guidelines-3/$', views.flatpage,
         {'url': '/contributor-guidelines-3/'}, name='guidelines-3'),
+    url(r'^contributor-guidelines-4/$', views.flatpage,
+        {'url': '/contributor-guidelines-4/'}, name='guidelines-4'),
 ]

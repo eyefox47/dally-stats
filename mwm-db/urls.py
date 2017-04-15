@@ -20,7 +20,7 @@ from django.contrib.flatpages import views
 urlpatterns = [
     # url(r'^admin/', include('smuggler.urls')),
     url(r'^admin/', admin.site.urls, name='admin'),
-    url(r'', include('stally.urls')),
+    url(r'', include('apps.database.urls')),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
 
     # Flatpages

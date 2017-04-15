@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %}
+  Characters in {{ campaign.name }}
+{% endblock %}
+
+{% block content %}
+  <div class="page-title">
+    <h1>Characters in <a href="{% url 'campaign_detail' pk=campaign.pk %}">
+        {{ campaign.name }}</a></h1>
+  </div>
+
+  {% for character in characters  %}
+    <div class="content-box-medium">
+      <h3><a href="{% url 'character_detail' pk=character.pk %}">
+        {{ character.name }}</a></h3>
+      {% include 'database/_character_attributes.html' %}
+    </div>
+  {% endfor %}
+{% endblock %}

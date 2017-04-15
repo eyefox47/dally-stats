@@ -1,0 +1,44 @@
+<div class="date">
+  <p><b>Started on:</b> {{ campaign.start_date }}</p>
+</div>
+<div class="row">
+    <div class="col-md-4 col-md-push-8">
+        <img class="portrait img-fluid"
+           src="{{ campaign.image.url }}" alt="{{ campaign.name }} image">
+   </div>
+   <div class="col-md-8 col-md-pull-4">
+      <p><b>DM:</b> <a href="{% url 'player_detail' pk=campaign.dm.pk %}">
+          {{ campaign.dm }}</a></p>
+      <p><b>Players:</b>
+        {% for player in campaign.players %}
+          <a href="{% url 'player_detail' pk=player.pk %}">{{ player }}</a>
+        {% endfor %}
+      </p>
+      {% if campaign.genre %}
+        <p><b>Genre:</b> {{ campaign.genre }}</p>
+      {% endif %}
+      {% if campaign.system %}
+        <p><b>System:</b> {{ campaign.system }}</p>
+      {% endif %}
+      {% if campaign.schedule and campaign.schedule_rythm and campaign.schedule_time%}
+        <p><b>Schedule:</b> {{ campaign.get_schedule_rythm_display }}
+                            on {{ campaign.get_schedule_display }} at {{ campaign.schedule_time }}.</p>
+      {% endif %}
+      {% if campaign.streaming_channel %}
+        <p><b>Streamed on:</b> <a target="_blank"
+          href="{{ campaign.streaming_channel }}">
+            {{ campaign.streaming_channel }}</a></p>
+      {% endif %}
+      {% if campaign.youtube_playlist %}
+        <p><b>Uploaded to:</b>  <a target="_blank"
+          href="{{ campaign.youtube_playlist }}">
+            {{ campaign.youtube_playlist }}</a></p>
+      {% endif %}
+      <p><b>Description:</b> {{ campaign.description|linebreaksbr }}</p>
+      {% if perms.database.change_campaign %}
+        <a class="btn btn-default" href="{% url 'campaign_edit' pk=campaign.pk %}">
+            <span class="glyphicon glyphicon-pencil"></span></a>
+      {% endif %}
+    </div>
+
+</div>

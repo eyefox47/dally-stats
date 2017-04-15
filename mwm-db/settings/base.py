@@ -42,7 +42,7 @@ PREREQ_APPS = [
 ]
 
 PROJECT_APPS = [
-    'stally',
+    'apps.database',
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS

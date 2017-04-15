@@ -6,6 +6,6 @@ db.sqlite3
 db.sqlite3.bak
 /static
 /media
-stally/migrations-bak
+apps/database/migrations-bak
 .DS_Store
 mwm-db/settings.py

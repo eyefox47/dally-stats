@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %}
+  {{ pet.name }}
+{% endblock %}
+
+{% block content %}
+  <div class="page-title">
+    <h1>{{ pet.name }}</h1>
+  </div>
+
+  <div class="content-box-large">
+    {% include 'database/_pet_attributes.html' %}
+  </div>
+{% endblock %}

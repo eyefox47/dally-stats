@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %}
+  {{ player.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-title">
+    <h1>{{ player.name }}</h1>
+    </div>
+
+    {% comment %} <div class="col-md-4 col-md-push-8">
+    {% if not player.image.url == "/media/images/no-img.jpg" %}
+      <img class="portrait img-fluid" src="{{ player.image.url }}"
+           alt="{{ player.name }} image">
+    {% endif %}
+    </div>
+    {% endcomment %}
+
+    <ul class="nav nav-tabs">
+        {% if player.main_characters.all %}
+            <li class="active"><a data-toggle="tab" href="#characters">Characters</a></li>
+        {% endif %}
+        {% if player.campaigns_dming.all %}
+            <li {% if not player.main_characters.all %}
+                    class="active"
+                {% endif %}>
+                <a data-toggle="tab" href="#campaigns-dming">Campaigns DMing</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <div class="tab-content">
+        {% if player.main_characters.all %}
+            <div id="characters" class="tab-pane fade in active">
+              {% for character in player.main_characters.all  %} {# Character list #}
+                <div class="content-box-medium">
+                  <h3><a href="{% url 'character_detail' pk=character.pk %}">
+                    {{ character.name }}</a></h3>
+                  {% include 'database/_character_attributes.html' %}
+                </div>
+              {% endfor %}
+        {% endif %}
+        </div>
+        {% if player.campaigns_dming.all %}
+            {% if player.main_characters.all %}
+                <div id="campaigns-dming" class="tab-pane fade">
+            {% else %}
+                <div id="campaigns-dming" class="tab-pane fade in active">
+            {% endif %}
+                {% for campaign in player.campaigns_dming.all %}
+                <h2><a href="{% url 'campaign_detail' pk=campaign.pk %}">
+                        {{ campaign.name }}</a></h2>
+                {% include 'database/_campaign_attributes.html' %}
+                <a href="{% url 'campaign_detail' pk=campaign.pk %}" class="link">Details</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %}
+  {{ character.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-title">
+        <h1>{{ character.name }}</h1>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#description">Description</a></li>
+        {% if character.pokemons.all %}
+            <li><a data-toggle="tab" href="#pokemon">Pokémon</a></li>
+        {% endif %}
+        {% if character.pets.all %}
+            <li><a data-toggle="tab" href="#pets">Pets</a></li>
+        {% endif %}
+    </ul>
+
+    <div class="tab-content">
+        <div id="description" class="tab-pane fade in active">
+            {% include 'database/_character_attributes.html' %}
+        </div>
+
+        {% if character.pokemons.all %}
+            <div id="pokemon" class="tab-pane fade">
+                {% for pokemon in character.pokemons.all  %}
+                    <div class="content-box-medium">
+                        <h3><a href="{% url 'pokemon_detail' pk=pokemon.pk %}">
+                                {{ pokemon.name }}</a></h3>
+                        {% include 'database/_pokemon_attributes.html' %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if character.pets.all %}
+            <div id="pets" class="tab-pane fade">
+                {% for pet in character.pets.all  %}
+                  <div class="content-box-medium">
+                    <h3><a href="{% url 'pet_detail' pk=pet.pk %}">
+                        {{ pet.name }}</a></h3>
+                    {% include 'database/_pet_attributes.html' %}
+                  </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if character.name == "Clark" %}
+        <div id="pants" class="codepants">
+            <img src="/media/images/pants.png" alt="">
+        </div>
+    {% endif %}
+
+    <script type="text/javascript">
+    var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', '/media/audio/Code pants.mp3');
+
+        $('#pants').click(function() {
+            $('#pants').addClass('codepants-animated');
+            audioElement.play();
+        });
+    </script>
+{% endblock %}
